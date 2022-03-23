@@ -27,9 +27,10 @@ const PORT = process.env.PORT || 5000
 //Inicio de servidor en puerto default
 app.listen(
 	PORT,
-	console.log(`Servidor corriendo en el modo de: ${process.env.NODE_ENV} en el peurto ${PORT}`)
+	console.log(`Servidor corriendo en el modo de: ${process.env.NODE_ENV} en el puerto ${PORT}`)
 )
 //Schema para los usuarios
+
 const UsuarioSchema = {
 	nombre: String,
 	correo: String,
