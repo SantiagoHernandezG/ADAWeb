@@ -1,6 +1,7 @@
 //Uso de librerias para ejecutar express js y poder leer req.body de los inputs
 const express = require("express");
 const dotenv = require("dotenv");
+dotenv.config({ path: './config/config.env'})
 var path = require('path');
 var cookieParser = require('cookie-parser')
 
@@ -9,8 +10,38 @@ var eventosRouter = require('./routes/eventos')
 var conferenciasRouter = require('./routes/conferencias')
 var nosotrxsRouter = require('./routes/nosotrxs')
 var perfilRouter = require('./routes/perfil')
+var authRouter = require('./routes/auth')
 
+const connectDB = require('./database/db')
+const morgan = require('morgan')
+const exphbs = require('express-handlebars')
+const passport = require('passport')
+const session = require('express-session')
+
+//Conexion a base de datos en MongoDB a traves de URL del cluster
+ connectDB()
+
+ //Passport config
+ require('./config/passport')(passport)
 const app = express();
+
+//Morgan
+if(process.env.NODE_ENV === 'development'){
+	app.use(morgan('dev'))
+}
+
+
+//Sessions
+app.use(session({
+	secret: 'keyboard cat',
+	resave: false,
+	saveUninitialized: false
+}))
+
+//Passport middleware
+app.use(passport.initialize())
+app.use(passport.session())
+
 
 //view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -30,10 +61,7 @@ require('dotenv/config');
 dotenv.config({path: './config/config.env'})
 //app.use(bodyParser.urlencoded({ extender: true }));
 
-//Monogoose para usar base de datos
-const mongoose = require("mongoose");
-//Conexion a base de datos en MongoDB a traves de URL del cluster
-mongoose.connect("mongodb+srv://Demian:57008345@cluster0.twupy.mongodb.net/ADA?retryWrites=true&w=majority", { useNewUrlParser: true })
+
 
 
 //app.use(bodyParser.json())
@@ -57,11 +85,7 @@ app.use('/conferencias', conferenciasRouter)
 app.use('/eventos', eventosRouter)
 app.use('/nosotrxs', nosotrxsRouter)
 app.use('/perfil', perfilRouter)
-
-/* Redireccionamiento de las demas vistas (Modulos del sistema)*/
-
-
-
+app.use('/auth', authRouter)
 
 
 //Inicio de servidor en puerto default
