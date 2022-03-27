@@ -1,7 +1,7 @@
 //Uso de librerias para ejecutar express js y poder leer req.body de los inputs
 const express = require("express");
 const dotenv = require("dotenv");
-dotenv.config({ path: './config/config.env'})
+dotenv.config({ path: './config/.env'})
 var path = require('path');
 var cookieParser = require('cookie-parser')
 
