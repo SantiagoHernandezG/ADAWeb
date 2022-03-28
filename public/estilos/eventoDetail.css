@@ -269,9 +269,12 @@
 
 
 .col-sm {
-    height:400px
+    height:400px;
+    display: flex;
+    justify-content: center;
    }
    img {
     width: auto; 
     max-height: 100%; 
+
    }
