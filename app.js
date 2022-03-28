@@ -86,6 +86,7 @@ app.use('/eventos', eventosRouter)
 app.use('/nosotrxs', nosotrxsRouter)
 app.use('/perfil', perfilRouter)
 app.use('/auth', authRouter)
+app.use('/logout', authRouter)
 
 
 //Inicio de servidor en puerto default
