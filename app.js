@@ -11,6 +11,7 @@ var conferenciasRouter = require('./routes/conferencias')
 var nosotrxsRouter = require('./routes/nosotrxs')
 var perfilRouter = require('./routes/perfil')
 var authRouter = require('./routes/auth')
+var homeRouter = require('./routes/home')
 
 const connectDB = require('./database/db')
 const morgan = require('morgan')
@@ -87,6 +88,7 @@ app.use('/nosotrxs', nosotrxsRouter)
 app.use('/perfil', perfilRouter)
 app.use('/auth', authRouter)
 app.use('/logout', authRouter)
+app.use('/home', homeRouter)
 
 
 //Inicio de servidor en puerto default
