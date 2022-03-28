@@ -10,6 +10,7 @@
 	<link href="../estilos/header.css" rel="stylesheet">
     <title>ADA WOMEN</title>
   </head>
+  <% if(login === 'falso') { %>
   <header class="p-3 bg-dark text-white" id="header">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -33,6 +34,32 @@
       </div>
     </div>
   </header>
+ <% } else { %>
+	<header class="p-3 bg-dark text-white" id="header">
+		<div class="container">
+		  <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+			<a href="/perfil" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+			  <img src="../imagenes/Icono.png" class="icono">
+			</a>
+	
+			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+			  <!-- Poner una condición para que perfil solo aparezca cuando se inicia sesión -->
+			  <li><a href="/perfil" class="nav-link px-3 text-white">Perfil</a></li>
+			  <li><a href="/conferencias" class="nav-link px-3 text-white">Conferencias Previas</a></li>
+			  <li><a href="/eventos" class="nav-link px-3 text-white">Futuros Eventos</a></li>
+			  <li><a href="/nosotrxs" class="nav-link px-3 text-white">Conoce Ada Women</a></li>
+			</ul>
+	
+			<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+			  <input type="search" class="form-control form-control-dark" placeholder="Buscar..." aria-label="Search">
+			</form>
+	
+			
+		  </div>
+		</div>
+	  </header>
+	<% } %>
+  
   <body>
 
   
