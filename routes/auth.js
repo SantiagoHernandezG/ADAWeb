@@ -10,7 +10,7 @@ router.get("/google/callback", passport.authenticate('google', {
     failureRedirect: '/'
  }), (req, res) => {
 	 var login = ('exito');
-     res.redirect('/conferencias')
+     res.redirect('/eventos')
  })
 
  //Logout user
