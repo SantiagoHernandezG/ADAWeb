@@ -7,5 +7,9 @@ router.get("/", function (req, res) {
 router.get("/conferencia", function (req, res) {
 	res.render('conferenciaDetail')
 })
+// Data Picker Initialization
+$('.datepicker').datepicker({
+	inline: true
+  });
 
 module.exports = router;

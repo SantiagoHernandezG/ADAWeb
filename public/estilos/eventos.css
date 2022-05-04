@@ -73,3 +73,6 @@
     background: -o-linear-gradient(left, #188ef4 0%, #316ce8 100%);
     background: linear-gradient(to right, #188ef4 0%, #316ce8 100%);
 }
+.card{
+	margin-bottom: 2vh;
+}

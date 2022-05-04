@@ -1,96 +1,164 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link href="../estilos/eventos.css" rel="stylesheet">
-    <title>Conferencias previas</title>
-  </head>
-  <%- include('header', {login: 'true'}); %>
-  <body>
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!------ Include the above in your HEAD tag ---------->
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
-    <!------ Include the above in your HEAD tag ---------->
-   
-    <div class="blog-home2 py-5">
-      <div class="container">
-        <!-- Row  -->
-        <div class="row justify-content-center">
-          <!-- Column -->
-          <div class="col-md-8 text-center">
-            <h3 class="my-3">Conferencias Previas</h3>
-            <h6 class="subtitle font-weight-normal">Conoce un poco más de de las actividades que hemos realizado.</h6>
-          </div>
-        </div>
-      </div>
-    </div>
-   
-    
-    <div class="container mb-4">
-        <div class="row">
-          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 mt-4">
-            <div class="card shadow">
-                <div class="card-body text-center">
-                    <a href="#">
-                        <img class="card-img-top" src="../imagenes/conferencias/mujeresTec.png"  alt="">
-                    </a>
-                    <ul class="list-inline mt-3">
-                        <li class="list-inline-item"><i class="fas fa-user"></i> Ana Rodríguez</li>
-                        <li class="list-inline-item"><i class="far fa-clock"></i> Enero 25, 2022</li>
-                    </ul>
-                    <hr>
-                    <p class="lead">Se llevó acabo el evento de Mujeres en tecnología en conjunto con el grupo de afinidad Mujeres en Ingeniería de IEEE Sección Guadalajara en colaboración con la startup #UnDosTres  </p>
-                    <a class="btn btn-outline-dark my-2" href="/conferencias/conferencia" role="button">Leer más...</a>
-                </div>
-            </div>
-        </div>
-     
-            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 mt-4">
-                <div class="card shadow">
-                    <div class="card-body text-center">
-                        <a href="#">
-                            <img class="card-img-top" src="../imagenes/conferencias/mujeresTec.png"  alt="">
-                        </a>
-                        <ul class="list-inline mt-3">
-                            <li class="list-inline-item"><i class="fas fa-user"></i> Ana Rodríguez</li>
-                            <li class="list-inline-item"><i class="far fa-clock"></i> Enero 25, 2022</li>
-                        </ul>
-                        <hr>
-                        <p class="lead">Se llevó acabo el evento de Mujeres en tecnología en conjunto con el grupo de afinidad Mujeres en Ingeniería de IEEE Sección Guadalajara en colaboración con la startup #UnDosTres  </p>
-                        <a class="btn btn-outline-dark my-2" href="/conferencias/conferencia" role="button">Leer más...</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 mt-4">
-              <div class="card shadow">
-                  <div class="card-body text-center">
-                      <a href="#">
-                          <img class="card-img-top" src="../imagenes/conferencias/mujeresTec.png"  alt="">
-                      </a>
-                      <ul class="list-inline mt-3">
-                          <li class="list-inline-item"><i class="fas fa-user"></i> Ana Rodríguez</li>
-                          <li class="list-inline-item"><i class="far fa-clock"></i> Enero 25, 2022</li>
-                      </ul>
-                      <hr>
-                      <p class="lead">Se llevó acabo el evento de Mujeres en tecnología en conjunto con el grupo de afinidad Mujeres en Ingeniería de IEEE Sección Guadalajara en colaboración con la startup #UnDosTres  </p>
-                      <a class="btn btn-outline-dark my-2" href="/conferencias/conferencia" role="button">Leer más...</a>
-                  </div>
-              </div>
-         
-        </div>
-    </div>
-    <!-- details card section starts from here -->
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<link href="../estilos/eventos.css" rel="stylesheet">
+	<title>Conferencias previas</title>
+</head>
+<%- include('header', {login: 'true' }); %>
 
-  </body>
+	<body>
+
+		<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+			id="bootstrap-css">
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<!------ Include the above in your HEAD tag ---------->
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+		<!------ Include the above in your HEAD tag ---------->
+
+		<div class="blog-home2 py-5">
+			<div class="container">
+				<!-- Row  -->
+				<div class="row justify-content-center">
+					<!-- Column -->
+					<div class="col-md-8 text-center">
+						<h3 class="my-3">Conferencias Previas</h3>
+						<h6 class="subtitle font-weight-normal">Conoce un poco más de de las actividades que hemos
+							realizado.</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="container mb-4">
+			<div class="row">
+				<div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 mt-4">
+					<div class="card shadow">
+						<div class="card-body text-center">
+							<a href="#">
+								<img class="card-img-top" src="../imagenes/conferencias/mujeresTec.png" alt="">
+							</a>
+							<ul class="list-inline mt-3">
+								<li class="list-inline-item"><i class="fas fa-user"></i> Ana Rodríguez</li>
+								<li class="list-inline-item"><i class="far fa-clock"></i> Enero 25, 2022</li>
+							</ul>
+							<hr>
+							<p class="lead">Se llevó acabo el evento de Mujeres en tecnología en conjunto con el grupo
+								de afinidad Mujeres en Ingeniería de IEEE Sección Guadalajara en colaboración con la
+								startup #UnDosTres </p>
+							<a class="btn btn-outline-dark my-2" href="/conferencias/conferencia" role="button">Leer
+								más...</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 mt-4">
+					<div class="card shadow">
+						<div class="card-body text-center">
+							<a href="#">
+								<img class="card-img-top" src="../imagenes/conferencias/mujeresTec.png" alt="">
+							</a>
+							<ul class="list-inline mt-3">
+								<li class="list-inline-item"><i class="fas fa-user"></i> Ana Rodríguez</li>
+								<li class="list-inline-item"><i class="far fa-clock"></i> Enero 25, 2022</li>
+							</ul>
+							<hr>
+							<p class="lead">Se llevó acabo el evento de Mujeres en tecnología en conjunto con el grupo
+								de afinidad Mujeres en Ingeniería de IEEE Sección Guadalajara en colaboración con la
+								startup #UnDosTres </p>
+							<a class="btn btn-outline-dark my-2" href="/conferencias/conferencia" role="button">Leer
+								más...</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 mt-4">
+					<div class="card shadow">
+						<div class="card-body text-center">
+							<a href="#">
+								<img class="card-img-top" src="../imagenes/conferencias/mujeresTec.png" alt="">
+							</a>
+							<ul class="list-inline mt-3">
+								<li class="list-inline-item"><i class="fas fa-user"></i> Ana Rodríguez</li>
+								<li class="list-inline-item"><i class="far fa-clock"></i> Enero 25, 2022</li>
+							</ul>
+							<hr>
+							<p class="lead">Se llevó acabo el evento de Mujeres en tecnología en conjunto con el grupo
+								de afinidad Mujeres en Ingeniería de IEEE Sección Guadalajara en colaboración con la
+								startup #UnDosTres </p>
+							<a class="btn btn-outline-dark my-2" href="/conferencias/conferencia" role="button">Leer
+								más...</a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="col text-center">
+				<button type="button" class="btn btn-primary col-4" data-bs-toggle="modal"
+					data-bs-target="#conferenciaModal">Añadir nueva conferencia</button>
+			</div>
+		</div>
+		<!--Inicio formulario modal para añadir conferencia-->
+		<!-- Modal -->
+		<div class="modal fade" id="conferenciaModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Añadir nueva conferencia</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="form-floating mb-3">
+							<input type="text" class="form-control">
+							<label for="floatingPassword">Nombre de la conferencia</label>
+						</div>
+						<div class="form-floating mb-3">
+							<input type="text" class="form-control">
+							<label for="floatingInput">Nombre del presentador</label>
+						</div>
+						<div class="form-floating mb-3">
+							<strong><h4">Fecha del evento:</h4></strong>
+						<input type="date" id="start" name="trip-start" value="2022-05-03" min="2018-01-01"
+							max="2024-12-31">
+						</div>
+						<div class="form-floating mb-3">
+							<input type="text" class="form-control">
+							<label for="floatingInput">Contacto Conferencista</label>
+						</div>
+						<div class="form-floating">
+							<textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+								style="height: 100px"></textarea>
+							<label for="floatingTextarea2">Descripción de la conferencia</label>
+						</div>
+						<div class="mb-3">
+							<strong><label for="formFile" class="form-label">Inserte promocional de la
+									conferencia</label></strong>
+							<input class="form-control" type="file" id="formFile">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+						<button type="button" class="btn btn-primary">Añadir Conferencia</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- details card section starts from here -->
+		<!-- Option 1: Bootstrap Bundle with Popper -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+			crossorigin="anonymous"></script>
+
+	</body>
+
 </html>
