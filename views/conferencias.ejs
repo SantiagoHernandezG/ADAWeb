@@ -108,9 +108,9 @@
 			</div>
 		</div>
 		<!--Inicio formulario modal para añadir conferencia-->
-		<!-- Modal -->
 		<div class="modal fade" id="conferenciaModal" tabindex="-1" aria-labelledby="exampleModalLabel"
 			aria-hidden="true">
+			<form class="form-horizontal" action="/altaConferencia" method="POST">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -119,11 +119,11 @@
 					</div>
 					<div class="modal-body">
 						<div class="form-floating mb-3">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" name="nombre">
 							<label for="floatingPassword">Nombre de la conferencia</label>
 						</div>
 						<div class="form-floating mb-3">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" name="nombrePresentador">
 							<label for="floatingInput">Nombre del presentador</label>
 						</div>
 						<div class="form-floating mb-3">
@@ -132,25 +132,27 @@
 							max="2024-12-31">
 						</div>
 						<div class="form-floating mb-3">
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" name="email">
 							<label for="floatingInput">Contacto Conferencista</label>
 						</div>
 						<div class="form-floating">
-							<textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+							<textarea class="form-control" name="description" placeholder="Leave a comment here" id="floatingTextarea2"
 								style="height: 100px"></textarea>
 							<label for="floatingTextarea2">Descripción de la conferencia</label>
 						</div>
 						<div class="mb-3">
 							<strong><label for="formFile" class="form-label">Inserte promocional de la
 									conferencia</label></strong>
-							<input class="form-control" type="file" id="formFile">
+							<input class="form-control" type="file" name"promocional" id="formFile">
 						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
 						<button type="button" class="btn btn-primary">Añadir Conferencia</button>
 					</div>
+				</form>
 				</div>
+			
 			</div>
 		</div>
 		<!-- details card section starts from here -->
