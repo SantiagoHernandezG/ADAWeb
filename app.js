@@ -17,13 +17,16 @@ const connectDB = require('./database/db')
 const morgan = require('morgan')
 const exphbs = require('express-handlebars')
 const passport = require('passport')
-const session = require('express-session')
+// const session = require('express-session')
+const cookieSession = require('cookie-session')
 
 //Conexion a base de datos en MongoDB a traves de URL del cluster
  connectDB()
 
  //Passport config
  require('./config/passport')(passport)
+
+ 
 const app = express();
 
 //Morgan
@@ -33,10 +36,14 @@ if(process.env.NODE_ENV === 'development'){
 
 
 //Sessions
-app.use(session({
+/* app.use(session({
 	secret: 'keyboard cat',
 	resave: false,
 	saveUninitialized: false
+})) */
+app.use(cookieSession({
+	maxAge: 24 * 3600 * 1000,
+	keys: ['keyboard cat']
 }))
 
 //Passport middleware
