@@ -1,21 +1,8 @@
 const express = require('express')
 const router = express.Router()
+let perfilController = require('../controllers/usuario/perfil')
 
-const authCheck = (req, res, next) => {
-	console.log("Cookie sesion", req.user)
-    if(!req.user)
-        res.redirect('/');
-    else
-        next();
-};
-
-
-router.get("/", authCheck ,function (req, res) {
-	res.render('perfil', { user: req.user })
-	
-})
-
-
+router.get("/", perfilController.auth_check, perfilController.perfil_get)
 
 
 module.exports = router

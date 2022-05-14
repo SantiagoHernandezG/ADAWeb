@@ -1,12 +1,10 @@
 const express = require('express')
 const router = express.Router()
+let controllerEventos = require('../controllers/eventos')
 
-router.get("/", function (req, res) {
-	res.render('eventos',  { user: req.user })
-})
-router.get("/evento", function (req, res) {
-	res.render('eventoDetail',  { user: req.user })
-})
+router.get("/", controllerEventos.eventos_get)
+
+router.get("/evento", controllerEventos.evento_get)
 
 
 module.exports = router
