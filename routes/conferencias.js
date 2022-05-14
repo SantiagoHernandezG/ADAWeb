@@ -5,15 +5,23 @@ var path = require('path');
 const app = express();
 const bodyParser = require("body-parser");
 
+const authCheck = (req, res, next) => {
+	console.log("Cookie sesion", req.user)
+    if(!req.user)
+        res.redirect('/');
+    else
+        next();
+};
 
 app.use(bodyParser.urlencoded({ extender: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 router.get("/", function (req, res) {
-	res.render('conferencias', { alta: '' })
+	res.render('conferencias', { alta: '' , user: req.user })
 })
+
 router.get("/conferencia", function (req, res) {
-	res.render('conferenciaDetail')
+	res.render('conferenciaDetail',  { user: req.user })
 })
 /* Data Picker Initialization
 $('.datepicker').datepicker({

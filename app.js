@@ -87,6 +87,7 @@ const PORT = process.env.PORT || 5000
 // 	contrasena: String
 // }
 
+
 //Define las configuraciones de rutas que se van a usar para cada ruta
 app.use('/', indexRouter)
 app.use('/conferencias', conferenciasRouter)
