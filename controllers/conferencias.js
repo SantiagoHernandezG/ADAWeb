@@ -4,24 +4,34 @@ exports.conferencias_get = function (req, res) {
     Conferencia.find({}, function (err, conferencias) {
         if (err) console.log(err)
         console.log(conferencias.length)
-        res.render('./conferencias/conferencias',  { user: req.user})
+        res.render('./conferencias/conferencias',  { user: req.user, conferencias: conferencias})
     })
 }
-/* ,conferencias: conferencias, ver si es para el redner de abajo o arriba  */
+
 exports.conferencia_get = function (req, res) {
-	res.render('./conferencias/conferenciaDetail',  { user: req.user })
+	const { nombre } = req.params;
+	console.log(nombre);
+	Conferencia.findOne({ nombre: nombre }, function (err, conferencias) {
+		if (err){
+			console.log(err)
+		}
+		else {
+		console.log("Conferencia encontrada: " + conferencias); // Success
+		res.render('./conferencias/conferenciaDetail',  { user: req.user, conferencias: conferencias})
+		}
+	})
 }
 
 
 //Altas Conferencia
 exports.conferencia_post =  function (req, res) {
+	Conferencia.find({}, function (err, conferencias) {
 
 	const newConferencia = {
 		nombre: req.body.nombre,
 		nombrePresentador: req.body.nombrePresentador,
-		fecha: req.body.trip-start,
+		fecha: req.body.fecha,
 		contacto: req.body.email,
-		promocional: req.body.promocional,
 		imageConferencia: req.file.filename,
 		descripcion: req.body.descripcion		
 	}
@@ -32,5 +42,6 @@ exports.conferencia_post =  function (req, res) {
     } catch (err){
         console.log(err)
     }
-	res.render('./conferencias/conferenciaDetail',  { user: req.user })
+	res.render('./conferencias/conferencias',  { user: req.user, conferencias: conferencias})
+})
 }
