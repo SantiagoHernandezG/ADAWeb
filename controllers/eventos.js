@@ -1,11 +1,11 @@
-
-const multer = require('multer')
-
-const eventoModel = require('../models/eventos/evento')
-
+const Evento = require('../models/eventos/evento')
 
 exports.eventos_get = function (req, res) {
-	res.render('./eventos/eventos',  { user: req.user })
+    Evento.find({}, function (err, eventos) {
+        if (err) console.log(err)
+        console.log(eventos.length)
+        res.render('./eventos/eventos',  { user: req.user, eventos: eventos })
+    })
 }
 
 exports.evento_get = function (req, res) {
@@ -13,7 +13,6 @@ exports.evento_get = function (req, res) {
 }
 
 exports.evento_post =  function (req, res) {
-    // console.log(req.body)
     const newEvent = {
         nameEvent: req.body.nameEvent,
         nameSpeaker: req.body.nameSpeaker,
@@ -21,18 +20,15 @@ exports.evento_post =  function (req, res) {
         contactEvent: req.body.contactEvent,
         descriptionEvent: req.body.descriptionEvent,
         timeEvent: req.body.timeEvent,
-        // imageEvent:
+        imageEvent: req.file.filename
  
     }
     console.log(newEvent)
     try{
-        let event = eventoModel.create(newEvent)
+        let event = Evento.create(newEvent)
         done(null, event)
-
     } catch (err){
         console.log(err)
-
     }
-
 	res.render('./eventos/eventoDetail',  { user: req.user })
 }

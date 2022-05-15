@@ -25,8 +25,12 @@
           <!-- Column -->
         </div>
         <div class="row mt-4">
+          <% for(let i = 0; i < eventos.length; i++) {%>
+            <%- include('./cardEvento', {evento: eventos[i]}); %>
+            <% } %>  
+            
                   <!-- Column -->
-                  <div class="col-md-4 on-hover">
+                  <!-- <div class="col-md-4 on-hover">
                     <div class="card border-0 mb-4">
                       <a href="#"><img class="card-img-top" src="../imagenes/eventos/tardepelis.jpeg" alt="wrappixel kit"></a>
                       <div class="date-pos bg-info-gradiant p-2 d-inline-block text-center rounded text-white position-absolute">Mar<span class="d-block">31</span></div>
@@ -34,9 +38,9 @@
                       <p class="mt-3">Acompáñanos en nuestra tarde de películas donde se estará transmitiendo la película de Marie Curie.</p>
                       <a href="/eventos/evento" class="text-decoration-none linking text-themecolor mt-2">Saber más</a>
                     </div>
-                  </div>
+                  </div> -->
           <!-- Column -->
-          <div class="col-md-4 on-hover">
+          <!-- <div class="col-md-4 on-hover">
             <div class="card border-0 mb-4">
               <a href="#"><img class="card-img-top" src="../imagenes/eventos/exatecavanzados.jpeg" alt="wrappixel kit"></a>
               <div class="date-pos bg-info-gradiant p-2 d-inline-block text-center rounded text-white position-absolute">Abr<span class="d-block">1</span></div>
@@ -44,9 +48,9 @@
               <p class="mt-3">No te pierdas nuestros eventos de entrevista para semestres avanzados.</p>
               <a href="#" class="text-decoration-none linking text-themecolor mt-2">Saber más</a>
             </div>
-          </div>
+          </div> -->
           <!-- Column -->
-          <div class="col-md-4 on-hover">
+          <!-- <div class="col-md-4 on-hover">
             <div class="card border-0 mb-4">
               <a href="#"><img class="card-img-top" src="../imagenes/eventos/exatecprimeros.jpeg" alt="wrappixel kit"></a>
               <div class="date-pos bg-info-gradiant p-2 d-inline-block text-center rounded text-white position-absolute">Abr<span class="d-block">1</span></div>
@@ -55,7 +59,7 @@
               <a href="#" class="text-decoration-none linking text-themecolor mt-2">Saber más</a>
             </div>
           </div>
-  
+   -->
         </div>
       </div>
     </div>

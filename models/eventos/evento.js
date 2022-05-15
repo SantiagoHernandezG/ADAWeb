@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 
-const imageModel = require('../image')
 
 //Schema para eventos
 const EventoSchema = new mongoose.Schema ({
@@ -27,7 +26,9 @@ const EventoSchema = new mongoose.Schema ({
 	timeEvent: {
 		type:String
 	},
-	// imageEvent: imageModel,
+	imageEvent: {
+		type: String,
+	},
 	createdAt: {
         type: Date,
         default: Date.now

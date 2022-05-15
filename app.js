@@ -53,6 +53,7 @@ app.use(passport.session())
 
 //view engine setup
 app.set('views', path.join(__dirname, 'views'));
+app.use(express.static('public'));
 
 const ejs = require('ejs');
 app.set('view engine', 'ejs');
@@ -67,25 +68,12 @@ var assert = require('assert');
 var fs = require('fs');
 require('dotenv/config');
 dotenv.config({path: './config/config.env'})
-//app.use(bodyParser.urlencoded({ extender: true }));
 
-
-
-
-//app.use(bodyParser.json())
-
+//la carpeta public se vuelve estática
 app.use(express.static(__dirname + '/public'));
 
 
 const PORT = process.env.PORT || 5000
-
-
-
-// const UsuarioSchema = {
-// 	nombre: String,
-// 	correo: String,
-// 	contrasena: String
-// }
 
 
 //Define las configuraciones de rutas que se van a usar para cada ruta
@@ -97,7 +85,6 @@ app.use('/perfil', perfilRouter)
 app.use('/auth', authRouter)
 app.use('/logout', authRouter)
 app.use('/home', homeRouter)
-
 
 //Inicio de servidor en puerto default
 app.listen(
