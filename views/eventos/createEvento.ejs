@@ -1,0 +1,61 @@
+   
+     <link href="../estilos/registro.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+          <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  
+  <!-- Modal registro -->
+ 		<div class="modal fade" id="nuevoEventoModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+			aria-hidden="true">
+			<form class="form-horizontal" action="/eventos/evento" method="POST">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Añadir nuevo Evento</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="form-floating mb-3">
+							<input type="text" class="form-control" name="nameEvent">
+							<label for="floatingPassword">Nombre del evento</label>
+						</div>
+						<div class="form-floating mb-3">
+							<input type="text" class="form-control" name="nombreSpeaker">
+							<label for="floatingInput">Nombre del presentador</label>
+						</div>
+						<div class="form-floating mb-3">
+							<strong><h4">Fecha y horario del evento:</h4></strong>
+						<input type="date" id="start" name="dateEvent" value="2022-05-03" min="2018-01-01"
+							max="2024-12-31">
+                        <input type="time" id="horario" name="timeEvent" >
+                        </div>
+  
+						<div class="form-floating mb-3">
+							<input type="text" class="form-control" name="contactEvent">
+							<label for="floatingInput">Contacto del evento</label>
+						</div>
+						<div class="form-floating">
+							<textarea class="form-control" name="descriptionEvent" placeholder="Leave a comment here" id="floatingTextarea2"
+								style="height: 100px"></textarea>
+							<label for="floatingTextarea2">Descripción del evento</label>
+						</div>
+                          <br>
+						<div class="mb-3">
+							<strong><label for="formFile" class="form-label">Inserte promocional de evento</label></strong>
+							<input class="form-control" type="file" name="imageEvent" id="formFile">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+						<input type="submit" value="Añadir Evento" class="btn btn-primary">
+					</div>
+				</form>
+				</div>
+			
+			</div>
+		</div>
