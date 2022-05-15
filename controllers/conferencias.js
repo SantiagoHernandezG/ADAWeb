@@ -1,13 +1,13 @@
 const Conferencia = require('../models/conferencias/conferencias')
 
 exports.conferencias_get = function (req, res) {
-    Conferencia.find({}, function (err, Conferencias) {
+    Conferencia.find({}, function (err, conferencias) {
         if (err) console.log(err)
-        console.log(Conferencias.length)
+        console.log(conferencias.length)
         res.render('./conferencias/conferencias',  { user: req.user})
     })
 }
-/* conferencias: conferencias para el get d elas demas */
+/* ,conferencias: conferencias, ver si es para el redner de abajo o arriba  */
 exports.conferencia_get = function (req, res) {
 	res.render('./conferencias/conferenciaDetail',  { user: req.user })
 }
@@ -16,13 +16,13 @@ exports.conferencia_get = function (req, res) {
 //Altas Conferencia
 exports.conferencia_post =  function (req, res) {
 
-	let newConferencia = {
+	const newConferencia = {
 		nombre: req.body.nombre,
 		nombrePresentador: req.body.nombrePresentador,
 		fecha: req.body.trip-start,
 		contacto: req.body.email,
 		promocional: req.body.promocional,
-		imageEvent: req.file.filename,
+		imageConferencia: req.file.filename,
 		descripcion: req.body.descripcion		
 	}
 	console.log(newConferencia)

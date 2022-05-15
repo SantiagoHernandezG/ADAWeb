@@ -1,0 +1,21 @@
+<div class="container mb-4">
+	<div class="row">
+		<div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 mt-4">
+			<div class="card shadow">
+				<div class="card-body text-center">
+					<a href="#">
+						<a href="#"><img class="card-img-top" src="/conferencias/img/<%= conferencia.imageEvent ? conferencia.imageEvent: 'th-3339243262' %>"  alt="wrappixel kit"></a>
+					</a>
+					<ul class="list-inline mt-3">
+						<li class="list-inline-item"><i class="fas fa-user"></i> <%= conferencia.nombre %></li>
+						<li class="list-inline-item"><i class="far fa-clock"></i><%= conferencia.dateEvent.toString().split(" ")[1] %></li>
+					</ul>
+					<hr>
+					<p class="lead"><%= conferencia.descripcion.substring(0,50)+"..." %> </p>
+					<a class="btn btn-outline-dark my-2" href="/conferencias/conferencia" role="button">Leer
+						más...</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

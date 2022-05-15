@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 
 //Schema para Conferencias
-const ConferenciaSchema = {
+const ConferenciaSchema = new mongoose.Schema({
 	nombre: String,
 	nombrePresentador: String,
 	fecha: Date,
@@ -11,7 +11,7 @@ const ConferenciaSchema = {
 		type: String,
 	},
 	descripcion: String,
-}
+})
 module.exports = mongoose.model('Conferencia', ConferenciaSchema);
 
 
