@@ -1,15 +1,22 @@
 const Evento = require('../models/eventos/evento')
 
-exports.eventos_get = function (req, res) {
+exports.eventos_get = function  (req, res) {
     Evento.find({}, function (err, eventos) {
         if (err) console.log(err)
-        console.log(eventos.length)
         res.render('./eventos/eventos',  { user: req.user, eventos: eventos })
     })
 }
 
-exports.evento_get = function (req, res) {
-	res.render('./eventos/eventoDetail',  { user: req.user })
+exports.evento_get = async (req, res)  => {
+   const  {eventName } = req.params;
+   try{
+      let evento = await Evento.findById(eventName)
+    //   console.log("Evento encontrado",evento)
+      res.render('./eventos/eventoDetail',  { user: req.user, evento: evento})
+
+   } catch (err){
+    console.log(err)
+   }
 }
 
 exports.evento_post =  function (req, res) {
@@ -20,15 +27,17 @@ exports.evento_post =  function (req, res) {
         contactEvent: req.body.contactEvent,
         descriptionEvent: req.body.descriptionEvent,
         timeEvent: req.body.timeEvent,
-        imageEvent: req.file.filename
+        imageEvent: req.file.filename,
+        placeEvent: req.body.placeEvent
+
  
     }
-    console.log(newEvent)
     try{
         let event = Evento.create(newEvent)
-        done(null, event)
+        
+        res.render('./eventos/eventoDetail',  { user: req.user, evento: event })
     } catch (err){
         console.log(err)
     }
-	res.render('./eventos/eventoDetail',  { user: req.user })
+	
 }

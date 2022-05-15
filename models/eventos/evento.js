@@ -29,6 +29,10 @@ const EventoSchema = new mongoose.Schema ({
 	imageEvent: {
 		type: String,
 	},
+	placeEvent:{
+		type: String,
+		required: true,
+	},
 	createdAt: {
         type: Date,
         default: Date.now
