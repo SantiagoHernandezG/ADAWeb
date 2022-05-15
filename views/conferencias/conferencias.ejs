@@ -5,14 +5,18 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<!-- Bootstrap CSS -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	<link href="../estilos/eventos.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+          <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+		  <link href="../estilos/eventos.css" rel="stylesheet">
 	<title>Conferencias previas</title>
 </head>
-<%- include('header'); %>
+<%- include('../header'); %>
 
 	<body>
 		
@@ -111,7 +115,7 @@
 		<!--Inicio formulario modal para añadir conferencia-->
 		<div class="modal fade" id="conferenciaModal" tabindex="-1" aria-labelledby="exampleModalLabel"
 			aria-hidden="true">
-			<form class="form-horizontal" action="/altaConferencia" method="POST">
+			<form class="form-horizontal" action="/conferencias/conferencia" method="POST" enctype="multipart/form-data">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -142,14 +146,13 @@
 							<label for="floatingTextarea2">Descripción de la conferencia</label>
 						</div>
 						<div class="mb-3">
-							<strong><label for="formFile" class="form-label">Inserte promocional de la
-									conferencia</label></strong>
-							<input class="form-control" type="file" name"promocional" id="formFile">
+							<strong><label for="formFile" class="form-label">Inserte promocional de la conferencia</label></strong>
+							<input class="form-control" type="file" name="imageEvent" id="formFile">
 						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-primary">Añadir Conferencia</button>
+						<button type="button"  class="btn btn-primary">Añadir Conferencia</button>
 					</div>
 				</form>
 				</div>
