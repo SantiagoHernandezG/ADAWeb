@@ -2,7 +2,7 @@
 exports.auth_check = (req, res, next) => {
 	console.log("Cookie sesion", req.user)
     if(!req.user)
-        res.redirect('/');
+        res.redirect('/home');
     else
         next();
 };
