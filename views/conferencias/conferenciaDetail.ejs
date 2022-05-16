@@ -11,7 +11,7 @@
     <link href="../estilos/eventoDetail.css" rel="stylesheet">
     <title>ADA</title>
   </head>
-  <%- include('header'); %>
+  <%- include('../header'); %>
   <body>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -23,15 +23,15 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"><div class="pd-wrap">
             <div class="container">
+				<div class="col-6 text-center mx-auto">
                 <div class="heading-section">
-                    <h2>Mujeres en Tecnología</h2>
+                    <h2><%= conferencias.nombre %></h2>
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <img src="../imagenes/conferencias/mujeresTec.png">
+                        <img class="card-img-top" style="width:30vw; height:auto;" src="/conferencias/img/<%= conferencias.imageConferencia ? conferencias.imageConferencia: 'th-3339243262' %>"
                      
                     </div>
-
       
                 </div>
                 <div class="product-info-tabs">
@@ -40,18 +40,17 @@
                     </ul>
                     <div class="tab-content" id="myTabContent">
                           <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-                            El evento que se realizó junto con El grupo de afinidad Mujeres en Ingeniería de IEEE Sección Guadalajara en colaboración con la startup #UnDosTres
-                            fue de gran impacto debido a que se logró compartir experiencias y temas de interés del área tecnológica.
-                            De igual manera hubo una feria de reclutamiento para varias vacantes.
+                            <%= conferencias.descripcion %>
                           </div>
                  
                     </div>
                 </div>
             </div>
+		</div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <%- include('./usuario/iniciarSesion'); %> 
+  <%- include('../usuario/iniciarSesion'); %> 
   
       </body>
 </html>
