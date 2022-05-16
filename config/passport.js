@@ -18,6 +18,7 @@ module.exports = function(passport) {
         }
 
         try{
+            console.log("nuevo usuario", newUser)
             let user = await User.findOne({ googleId: profile.id})
             
             if(user) {
