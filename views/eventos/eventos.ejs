@@ -32,13 +32,17 @@
       </div>
     </div>
 <div>
-  <% if (user.position == "admin") {%>
+  <% if(user) {%> 
+      <% if (user.position == "admin") {%>
       <div class="col text-center">
 				<button type="button" class="btn btn-primary col-4" data-bs-toggle="modal"
 					data-bs-target="#nuevoEventoModal">Añadir nuevo evento</button>
 	    </div>
 
    <% }%>
+
+    <% } %> 
+
 
   <div>
     <%- include('createEvento'); %>
