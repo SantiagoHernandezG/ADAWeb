@@ -7,11 +7,15 @@
       </div>
       <div class="modal-body">
         <p>Nombre de evento: <%= evento.nameEvent %></p>
+        <p>Id de evento: <%= evento._id %></p>
         <p>Descripción de evento: <%= evento.descriptionEvent %></p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Borrar evento</button>
+        <form action="/eventos/delete" method="POST">
+        <button type="submit" name="buttonDelete"class="btn btn-primary" value="<%= evento._id%>" >Borrar evento</button>
+         </form>
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+       
       </div>
     </div>
   </div>

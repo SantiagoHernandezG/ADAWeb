@@ -12,5 +12,6 @@ router.get("/", controllerEventos.eventos_get)
 // router.get("/evento", controllerEventos.evento_get)
 router.get('/:eventName', controllerEventos.evento_get)
 router.post("/evento", upload.single('imageEvent'), controllerEventos.evento_post)
+router.post("/delete", controllerEventos.evento_delete_post)
 
 module.exports = router

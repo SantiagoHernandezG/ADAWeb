@@ -40,3 +40,16 @@ exports.evento_post =  async (req, res) => {
     }
 	
 }
+
+exports.evento_delete_post = async (req, res) => {
+    const eventId = req.body.buttonDelete
+    console.log("Id de delete", eventId)
+    try{
+        await Evento.findByIdAndRemove(eventId)
+        res.redirect("/eventos")
+
+    }catch (err){
+        console.log(err)
+    }
+
+}
