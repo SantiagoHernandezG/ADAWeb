@@ -7,15 +7,14 @@ const UserSchema  = new mongoose.Schema({
     },
     displayName: {
         type: String,
-        required: true
+        required: [true, 'El nombre es obligatorio']
     },
     firstName: {
         type: String,
-        required: true
-    },
+        required: [true, 'El nombre es obligatorio']    },
     lastName: {
         type: String,
-        required: true
+        required: [true, 'El nombre es obligatorio']
     },
     image: {
         type: String
@@ -26,4 +25,12 @@ const UserSchema  = new mongoose.Schema({
     }
 })
 
+UserSchema.method.toString = function(){
+    return `googleId: ${this.googleId}, displayName: ${this.displayName}, 
+    firstName: ${this.firstName}, lastName: ${this.lastName}, image: ${this.image}, createdAt: ${this.createdAt}`
+}
+
+UserSchema.statics.allUsers = function(cb){
+    return this.find({}, cb)
+}
 module.exports = mongoose.model('User', UserSchema)
