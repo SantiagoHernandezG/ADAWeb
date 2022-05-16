@@ -10,7 +10,7 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false})
 router.get("/", controllerEventos.eventos_get)
 
 // router.get("/evento", controllerEventos.evento_get)
-router.get('/evento/:eventName', urlencodedParser, controllerEventos.evento_get)
+router.get('/:eventName', controllerEventos.evento_get)
 router.post("/evento", upload.single('imageEvent'), controllerEventos.evento_post)
 
 module.exports = router

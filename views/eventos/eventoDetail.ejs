@@ -26,21 +26,23 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"><div class="pd-wrap">
             <div class="container">
                 <div class="heading-section">
-                    <h2>¡Tarde de película!</h2>
+                    <h2><%= evento.nameEvent %> </h2>
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <img src="../imagenes/eventos/tardepelis.jpeg">
+                        <img src="/eventos/img/<%= evento.imageEvent ? evento.imageEvent: 'th-3339243262' %>">
                      
                     </div>
 
                     <div class="col-md-6">
                         <div class="product-dtl">
                            
-                            <p>Acompáñanos en nuestra tarde de películas donde se estará transmitiendo la película de Marie Curie.</p>
-                            <p>Fecha: Jueves 31 de marzo</p>
-                            <p>Horario: 14:00 hrs</p>
-                            <p>Lugar: AII 206</p>
+                            <!-- <p>Acompáñanos en nuestra tarde de películas donde se estará transmitiendo la película de Marie Curie.</p> -->
+                            <p>Fecha: <%= evento.dateEvent.toString().substring(0,16) %> </p>
+                            <p>Horario: <%=evento.timeEvent %> hrs</p>
+                            <% if(evento.nameSpeaker){ %><p>Conferencista: <%=evento.nameSpeaker %></p> <% } %> 
+                            <p>Lugar: <%=evento.placeEvent %></p>
+                            <p>Contacto: <%=evento.contactEvent %></p>
                             <div class="product-count">
                       
                                 <a href="https://cutt.ly/UDqWJ8g" class="round-black-btn">Regístrate</a>
@@ -56,8 +58,7 @@
                     </ul>
                     <div class="tab-content" id="myTabContent">
                           <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-                            El motivo de este evento es para pasar un rato agradable en compañía de nuestra comunidad en donde podamos distrutar de una película maravillosa como lo es la
-                            película de Maria Currie. 
+                           <%=evento.descriptionEvent %>
                           </div>
                  
                     </div>

@@ -19,7 +19,7 @@ exports.evento_get = async (req, res)  => {
    }
 }
 
-exports.evento_post =  function (req, res) {
+exports.evento_post =  async (req, res) => {
     const newEvent = {
         nameEvent: req.body.nameEvent,
         nameSpeaker: req.body.nameSpeaker,
@@ -33,8 +33,7 @@ exports.evento_post =  function (req, res) {
  
     }
     try{
-        let event = Evento.create(newEvent)
-        
+        let event = await Evento.create(newEvent)
         res.render('./eventos/eventoDetail',  { user: req.user, evento: event })
     } catch (err){
         console.log(err)
