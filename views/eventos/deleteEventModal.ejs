@@ -1,4 +1,4 @@
-<div class="modal" id="deleteEventModal" tabindex="-1" role="dialog">
+<div class="modal" id="deleteEventModal-<%= evento._id.toString() %>" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -15,7 +15,6 @@
         <button type="submit" name="buttonDelete"class="btn btn-primary" value="<%= evento._id%>" >Borrar evento</button>
          </form>
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-       
       </div>
     </div>
   </div>
