@@ -36,7 +36,15 @@ const EventoSchema = new mongoose.Schema ({
 	createdAt: {
         type: Date,
         default: Date.now
-    }
+    },
+	creatorName: {
+		type: String,
+		required: true
+	},
+	creatorId: {
+		type: String,
+		required: true
+	}
 	
 }) 
 

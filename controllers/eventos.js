@@ -1,4 +1,4 @@
-const Evento = require('../models/eventos/evento')
+const Evento = require('../models/evento')
 
 exports.eventos_get = function  (req, res) {
     Evento.find({}, function (err, eventos) {
@@ -28,8 +28,9 @@ exports.evento_post =  async (req, res) => {
         descriptionEvent: req.body.descriptionEvent,
         timeEvent: req.body.timeEvent,
         imageEvent: req.file.filename,
-        placeEvent: req.body.placeEvent
-
+        placeEvent: req.body.placeEvent,
+        creatorName: req.user.displayName,
+        creatorId: req.user._id
  
     }
     try{
@@ -43,7 +44,6 @@ exports.evento_post =  async (req, res) => {
 
 exports.evento_delete_post = async (req, res) => {
     const eventId = req.body.buttonDelete
-    console.log("Id de delete", eventId)
     try{
         await Evento.findByIdAndRemove(eventId)
         res.redirect("/eventos")
