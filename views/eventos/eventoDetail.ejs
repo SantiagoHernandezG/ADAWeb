@@ -43,10 +43,7 @@
                             <% if(evento.nameSpeaker){ %><p>Conferencista: <%=evento.nameSpeaker %></p> <% } %> 
                             <p>Lugar: <%=evento.placeEvent %></p>
                             <p>Contacto: <%=evento.contactEvent %></p>
-                            <div class="product-count">
-                      
-                                <a href="https://cutt.ly/UDqWJ8g" class="round-black-btn">Regístrate</a>
-                            </div>
+                        <%- include('./registro/registroMember'); %>
                         </div>
                     </div>
                 </div>
