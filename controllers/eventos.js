@@ -77,10 +77,8 @@ exports.evento_registrar_post = async(req, res) => {
                 nameUser: req.body.nameUser,
                 emailUser: req.body.emailUser,
             }
-            console.log("id",req.body.idEvent)
         }
         evento = await Evento.findById(req.body.idEvent)
-        console.log("evento", evento)
         
         if(registrado){
             res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: 'registrado'})
