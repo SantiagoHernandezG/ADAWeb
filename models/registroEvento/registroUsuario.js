@@ -22,4 +22,4 @@ const RegistroUsuarioSchema = new mongoose.Schema ({
 	
 }) 
 
-module.exports = mongoose.model('RegistoEvento', RegistroUsuarioSchema)
+module.exports = mongoose.model('registro-evento-user', RegistroUsuarioSchema)

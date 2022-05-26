@@ -1,6 +1,6 @@
 <div class="modal fade" id="registroUserModal" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <form class="form-horizontal" action="/eventos/registrar" method="POST" enctype="multipart/form-data">
+    <form class="form-horizontal" action="/eventos/registrar" method="POST" >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -17,11 +17,14 @@
                     <input type="text" class="form-control" name="emailUser" required="true" >
                     <label for="floatingInput">Correo </label>
                 </div>
+                <div class="visually-hidden">
+                    <input type="text"  name="idEvent" required="true" value="<%= evento._id.toString() %>" >
+                </div>
 
                 
             </div>
             <div class="modal-footer">
-                <button type="submit"  class="btn btn-primary">Regístrate</button>
+                <button type="submit"  class="btn btn-primary" >Regístrate</button>
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
             </div>
         </form>

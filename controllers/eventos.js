@@ -1,5 +1,6 @@
 const Evento = require('../models/evento')
 const RegistroEventoMember = require('../models/registroEvento/registroMember')
+const RegistroEventoUser = require('../models/registroEvento/registroUsuario')
 
 exports.eventos_get = function  (req, res) {
     Evento.find({}, function (err, eventos) {
@@ -56,21 +57,35 @@ exports.evento_delete_post = async (req, res) => {
 }
 
 exports.evento_registrar_post = async(req, res) => {
-    if(req.user){
-            const newRegistroEventoMember = {
-        idEvent: req.body.idEvent,
-        nameMember: req.body.nameMember,
-        idMember: req.body.idMember,
-    }
+    
     let evento;
     try{
-        let registroMember = await RegistroEventoMember.findOne({idMember: req.user._id, idEvent: req.body.idEvent})
+        let registrado;
+        let newRegistro;
+        if(req.user){
+            registrado = await RegistroEventoMember.findOne({idMember: req.user._id, idEvent: req.body.idEvent})
+            newRegistro = {
+                idEvent: req.body.idEvent,
+                nameMember: req.body.nameMember,
+                idMember: req.body.idMember,
+            }
+
+        }else{
+            registrado = await RegistroEventoUser.findOne({idEvent: req.body.idEvent, nameUser: req.body.nameUser, emailUser: req.body.emailUser})
+            newRegistro = {
+                idEvent: req.body.idEvent,
+                nameUser: req.body.nameUser,
+                emailUser: req.body.emailUser,
+            }
+            console.log("id",req.body.idEvent)
+        }
         evento = await Evento.findById(req.body.idEvent)
+        console.log("evento", evento)
         
-        if(registroMember){
+        if(registrado){
             res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: 'registrado'})
         }else{
-            registroMember = await RegistroEventoMember.create(newRegistroEventoMember)
+            req.user ? await RegistroEventoMember.create(newRegistro) : await RegistroEventoUser.create(newRegistro)
             res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: 'exitoso'})
         }
         
@@ -78,9 +93,7 @@ exports.evento_registrar_post = async(req, res) => {
        res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: 'error'})
     }
 
-    }else{
-        console.log("hola")
-    }
+ 
 
 
 

@@ -20,4 +20,4 @@ const RegistroMiembroSchema = new mongoose.Schema ({
     }	
 }) 
 
-module.exports = mongoose.model('RegistoEvento', RegistroMiembroSchema)
+module.exports = mongoose.model('registro-evento-member', RegistroMiembroSchema)
