@@ -1,6 +1,7 @@
 const Evento = require('../models/evento')
 const RegistroEventoMember = require('../models/registroEvento/registroMember')
 const RegistroEventoUser = require('../models/registroEvento/registroUsuario')
+const mailer = require('./apis/mailer')
 
 exports.eventos_get = function  (req, res) {
     Evento.find({}, function (err, eventos) {
@@ -57,6 +58,8 @@ exports.evento_delete_post = async (req, res) => {
 }
 
 exports.evento_registrar_post = async(req, res) => {
+    mailer.sendMail().then(result => console.log("email sent...", result))
+    .catch(error => console.log(error.message))
     
     let evento;
     try{
