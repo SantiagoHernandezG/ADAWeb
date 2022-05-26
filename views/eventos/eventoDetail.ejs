@@ -43,7 +43,12 @@
                             <% if(evento.nameSpeaker){ %><p>Conferencista: <%=evento.nameSpeaker %></p> <% } %> 
                             <p>Lugar: <%=evento.placeEvent %></p>
                             <p>Contacto: <%=evento.contactEvent %></p>
-                        <%- include('./registro/registroMember'); %>
+                           <% if(user) {%>
+                                <%- include('./registro/registroMember'); %>
+                                <% } else{ %> 
+                                    <button type="button" class="round-black-btn" data-bs-toggle="modal" data-bs-target="#registroUserModal" >Regístrate</button>
+                                     <%- include('./registro/registroUserModal'); %>
+                                <% } %>  
                         </div>
                     </div>
                 </div>

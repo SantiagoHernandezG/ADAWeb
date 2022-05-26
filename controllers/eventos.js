@@ -56,8 +56,8 @@ exports.evento_delete_post = async (req, res) => {
 }
 
 exports.evento_registrar_post = async(req, res) => {
-    console.log(req.body)
-    const newRegistroEventoMember = {
+    if(req.user){
+            const newRegistroEventoMember = {
         idEvent: req.body.idEvent,
         nameMember: req.body.nameMember,
         idMember: req.body.idMember,
@@ -77,6 +77,11 @@ exports.evento_registrar_post = async(req, res) => {
     } catch (err){
        res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: 'error'})
     }
+
+    }else{
+        console.log("hola")
+    }
+
 
 
 }

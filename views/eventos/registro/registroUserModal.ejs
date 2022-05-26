@@ -1,0 +1,31 @@
+<div class="modal fade" id="registroUserModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <form class="form-horizontal" action="/eventos/registrar" method="POST" enctype="multipart/form-data">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Registro para asistir a <%= evento.nameEvent %>  </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="nameUser" required="true" value="">
+                    <label for="floatingPassword">Nombre</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="emailUser" required="true" >
+                    <label for="floatingInput">Correo </label>
+                </div>
+
+                
+            </div>
+            <div class="modal-footer">
+                <button type="submit"  class="btn btn-primary">Regístrate</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </form>
+        </div>
+    
+    </div>
+</div>
