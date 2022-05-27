@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+//import bcrypt from 'bcrypt'
 
 const UserSchema  = new mongoose.Schema({
     googleId: {
@@ -16,6 +17,11 @@ const UserSchema  = new mongoose.Schema({
         type: String,
         required: [true, 'El nombre es obligatorio']
     },
+    email: {
+        type: String,
+        required: [true, 'El correo es obligatorio'],
+        unique: true
+     },
     image: {
         type: String
     },
@@ -30,6 +36,11 @@ UserSchema.method.toString = function(){
     firstName: ${this.firstName}, lastName: ${this.lastName}, image: ${this.image}, createdAt: ${this.createdAt}`
 }
 
+/*UserSchema.methods.encryptPassword = async password => {
+    const salt = await bcrypt.genSalt(10)
+    return await bcrypt.hash(password,salt)
+}
+*/
 UserSchema.statics.allUsers = function(cb){
     return this.find({}, cb)
 }
