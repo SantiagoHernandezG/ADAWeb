@@ -19,8 +19,7 @@ const UserSchema  = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: [true, 'El correo es obligatorio'],
-        unique: true
+        required: [true, 'El correo es obligatorio']
      },
     image: {
         type: String
