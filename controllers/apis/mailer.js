@@ -6,7 +6,7 @@ const oAuth2Client = new google.auth.OAuth2(process.env.CLIENT_ID_MAILER, proces
 oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN_MAILER })
 
 
-exports.sendMail = async() => {
+exports.sendMail = async(toEmail, subjectEmail, textEmail) => {
     try {
         // Token de acceso de oAuth2Client
         const accessToken = await oAuth2Client.getAccessToken()
@@ -26,10 +26,10 @@ exports.sendMail = async() => {
         })
         const mainOptions = {
              from: 'AdaWomen <adawomenccm@gmail.com>',
-             to: 'archanavermarodriguez@gmail.com',
-             subject: 'Holaaaa usando api',
-             text: 'Espero estés bien',
-             html: '<h1>Espero estés bien</h1>'
+             to: toEmail,
+             subject: subjectEmail,
+             text: textEmail,
+             html: '<p>'+textEmail+'</p>'
         }
 
         const result = await transport.sendMail(mainOptions)

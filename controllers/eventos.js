@@ -58,13 +58,14 @@ exports.evento_delete_post = async (req, res) => {
 }
 
 exports.evento_registrar_post = async(req, res) => {
-    mailer.sendMail().then(result => console.log("email sent...", result))
-    .catch(error => console.log(error.message))
-    
     let evento;
+    let subject;
+    let text;
+    let to;
+    let registrado;
+    let newRegistro;
     try{
-        let registrado;
-        let newRegistro;
+        evento = await Evento.findById(req.body.idEvent)
         if(req.user){
             registrado = await RegistroEventoMember.findOne({idMember: req.user._id, idEvent: req.body.idEvent})
             newRegistro = {
@@ -72,6 +73,8 @@ exports.evento_registrar_post = async(req, res) => {
                 nameMember: req.body.nameMember,
                 idMember: req.body.idMember,
             }
+            text = `Gracias ${req.user.displayName} por registrarte en el evento ${evento.nameEvent}. Estamos muy emocionados de recibirte.`
+            to = req.user.email
 
         }else{
             registrado = await RegistroEventoUser.findOne({idEvent: req.body.idEvent, nameUser: req.body.nameUser, emailUser: req.body.emailUser})
@@ -80,13 +83,21 @@ exports.evento_registrar_post = async(req, res) => {
                 nameUser: req.body.nameUser,
                 emailUser: req.body.emailUser,
             }
+            text = `¡Gracias ${req.body.nameUser} por registrarte en el evento ${evento.nameEvent}! Estamos muy emocionados por recibirte.`
+            to = req.body.emailUser
+            
         }
-        evento = await Evento.findById(req.body.idEvent)
-        
-        if(registrado){
+        subject = `Confirmación de registro al evento ${evento.nameEvent}`
+        text +=  ` El evento se llevará a cabo el día ${evento.dateEvent.toLocaleDateString(undefined, {timeZone: 'UTC', dateStyle: 'long'})} a las 
+        ${evento.timeEvent} hrs en ${evento.placeEvent}. La descripción del evento es la siguiente: ${evento.descriptionEvent}. Cualquier duda o aclaración
+        no dudes en contactarte con ${evento.contactEvent}. ¡Saludos!
+        `
+        if(!(registrado == null)){
             res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: 'registrado'})
         }else{
             req.user ? await RegistroEventoMember.create(newRegistro) : await RegistroEventoUser.create(newRegistro)
+            mailer.sendMail(to, subject, text).then(result => console.log("email sent...", result))
+            .catch(error => console.log(error.message))
             res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: 'exitoso'})
         }
         
