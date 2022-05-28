@@ -66,7 +66,7 @@
                                     </li>
                                     <li class="nav-item  creator_tab" id="tab-title-reviews">
                                             <a class="nav-link " href="#tab-creator-details" data-bs-toggle="tab" role="tab" aria-controls="tab-reviews">
-                                            Detalles creador        </a>
+                                            Detalles de publicación        </a>
                                      </li>
                                     <%}}%>
                             
@@ -79,8 +79,13 @@
                                 <p><%=evento.descriptionEvent %></p>
                             </div>
                             <div class="tab-pane  pt-4 fade  woocommerce-Tabs-panel--reviews" id="tab-creator-details" role="tabpanel" aria-labelledby="tab-title-reviews">
-                                <p>Evento publicado por: <%=evento.creatorName %></p>
+                                <p>Evento creado por: <%=evento.creatorName %></p>
                                 <p>ID del creador: <%=evento.creatorId %></p>
+                                <% if(evento.updatedByName) {%> 
+                                    <p>Evento actualizado por: <%=evento.updatedByName %></p>
+                                    <p>ID del actualizador: <%=evento.updatedById %></p>
+                                    
+                                    <% } %>  
                             </div>
                         </div>
                     </div>
