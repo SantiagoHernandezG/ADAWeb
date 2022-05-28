@@ -12,7 +12,7 @@
   <!-- Modal registro -->
  		<div class="modal fade" id="updateEventModal-<%= evento._id.toString() %>" tabindex="-1" aria-labelledby="exampleModalLabel"
 			aria-hidden="true">
-			<form class="form-horizontal" action="/eventos/update" method="POST" enctype="multipart/form-data">
+			<form class="form-horizontal" action="/eventos/update" method="POST" >
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -52,12 +52,14 @@
 						<div class="form-floating mb-3 text-center" >
 							 <img src="/eventos/img/<%= evento.imageEvent ? evento.imageEvent: 'th-3339243262' %>" alt="<%= evento.nameEvent %>" style="width:70%">
 						</div>
-                          <br>
+						<div class="visually-hidden">
+							<input type="text" class="form-control" name="idEvent"  value="<%= evento._id.toString()%>">
+						</div>
+                          <!-- <br>
 						<div class="mb-3">
 							<strong><label for="formFile" class="form-label">Inserte nuevo promocional de evento si desea cambiarlo</label></strong>
-							<!-- <input class="form-control" type="file" name="imageEvent" id="formFile" value="hola"> -->
                             <input type="file" name="imageEvent" >
-						</div>
+						</div> -->
 					</div>
 					<div class="modal-footer">
 						<input type="submit" value="Guardar cambios" class="btn btn-primary">

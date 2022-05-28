@@ -44,6 +44,14 @@ const EventoSchema = new mongoose.Schema ({
 	creatorId: {
 		type: String,
 		required: true
+	},
+	updatedByName: {
+		type: String,
+		
+	},
+	updatedById: {
+		type: String,
+
 	}
 	
 }) 

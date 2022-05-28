@@ -34,11 +34,10 @@ exports.evento_post =  async (req, res) => {
         placeEvent: req.body.placeEvent,
         creatorName: req.user.displayName,
         creatorId: req.user._id
- 
     }
     try{
         let event = await Evento.create(newEvent)
-        res.render('./eventos/eventoDetail',  { user: req.user, evento: event })
+        res.render('./eventos/eventoDetail',  { user: req.user, evento: event, registro: false })
     } catch (err){
         console.log(err)
     }
@@ -104,9 +103,32 @@ exports.evento_registrar_post = async(req, res) => {
     } catch (err){
        res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: 'error'})
     }
+}
 
- 
+exports.evento_update_post = async (req, res) => {
+    const updateEvent = {
+        nameEvent: req.body.nameEvent,
+        nameSpeaker: req.body.nameSpeaker,
+        dateEvent: req.body.dateEvent,
+        contactEvent: req.body.contactEvent,
+        descriptionEvent: req.body.descriptionEvent,
+        timeEvent: req.body.timeEvent,
+        placeEvent: req.body.placeEvent,
+        updatedByName: req.user.displayName,
+        updatedById: req.user._id,
+        
+    }
+    let idEvent = req.body.idEvent
+    console.log(idEvent)
+    try {
+        await Evento.findByIdAndUpdate(req.body.idEvent, updateEvent)
+        let evento = await Evento.findById(req.body.idEvent)
 
+        console.log("evento encontrado", evento)
+        res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: false})
+    } catch (err) {
+        console.log(err)
 
+    }
 
 }
