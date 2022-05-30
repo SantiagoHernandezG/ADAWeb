@@ -133,20 +133,32 @@
 							<button type="submit" onClick="window.location.reload();" class="btn btn-primary col-4">Sube tú opinion</button>
 						  </form>
 					</p>
+					<ul>
+						<% wordclouds.forEach(function(wordclouds){ %>
+							
+							<% console.log(wordcloud.descripcion) %>
+							
+							<!-- Assign const worldcloud values in wordclouds.descripcion -->
+
+						  <% }); %>
+					</ul>
 				</figure>
 			</div>
 		</div>
-		<!--Script que maneja el grafico de las palabras mas destacadas del grupo-->
-
-		<% for(let i = 0; i < wordclouds.length; i++) {%>
-			<%= wordclouds[i].descripcion %>
-			<script>
-				var wordcloud = wordclouds[i].descripcion;
-			</script>
-		<% } %> 
+		<!--Script que maneja el grafico de las palabras mas destacadas del grupo
+		
+ for(let i = 0; i < wordclouds.length; i++) 
+			 wordclouds[i].descripcion 
+			 } %>  -->
+			<!--<script>
+			const wordclouds =  JSON.stringify(wordclouds[i].descripcion)%>;
+				//var wordcloud = wordclouds[i].descripcion;
+			</script>-->
+		
 		<script>
+			
 			//const text = "<%= wordclouds[1].descripcion %>",
-				const text = "Amistades Amistades Amistades ITC ITC Amor Amor cariño demix juan Amor cool compiladores",
+				const text = '<%- JSON.stringify(level_tab) %>',
 				lines = text.split(/[,\. ]+/g),
 				
 				data = lines.reduce((arr, word) => {
