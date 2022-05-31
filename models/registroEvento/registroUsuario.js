@@ -7,11 +7,11 @@ const RegistroUsuarioSchema = new mongoose.Schema ({
 		type: String,
 		required: true
 	},
-	nameUser: {
+	name: {
 		type:String,
 		required: true
 	},
-	emailUser: {
+	email: {
 		type:String,
 		required: true
 	},

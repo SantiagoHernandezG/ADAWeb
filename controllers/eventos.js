@@ -12,10 +12,16 @@ exports.eventos_get = function  (req, res) {
 
 exports.evento_get = async (req, res)  => {
    const  {eventName } = req.params;
+   let participantes = false;
    try{
       let evento = await Evento.findById(eventName)
+      if(req.user){
+          if(req.user.position == "admin"){
+              console.log("admin")
+          }
+      }
     //   console.log("Evento encontrado",evento)
-      res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: false})
+      res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: false, participantes: participantes})
 
    } catch (err){
     console.log(err)
@@ -69,8 +75,10 @@ exports.evento_registrar_post = async(req, res) => {
             registrado = await RegistroEventoMember.findOne({idMember: req.user._id, idEvent: req.body.idEvent})
             newRegistro = {
                 idEvent: req.body.idEvent,
-                nameMember: req.body.nameMember,
+                name: req.body.nameMember,
                 idMember: req.body.idMember,
+                email : req.body.emailMember,
+
             }
             text = `Gracias ${req.user.displayName} por registrarte en el evento ${evento.nameEvent}. Estamos muy emocionados de recibirte.`
             to = req.user.email
@@ -79,8 +87,8 @@ exports.evento_registrar_post = async(req, res) => {
             registrado = await RegistroEventoUser.findOne({idEvent: req.body.idEvent, nameUser: req.body.nameUser, emailUser: req.body.emailUser})
             newRegistro = {
                 idEvent: req.body.idEvent,
-                nameUser: req.body.nameUser,
-                emailUser: req.body.emailUser,
+                name: req.body.nameUser,
+                email: req.body.emailUser,
             }
             text = `¡Gracias ${req.body.nameUser} por registrarte en el evento ${evento.nameEvent}! Estamos muy emocionados por recibirte.`
             to = req.body.emailUser

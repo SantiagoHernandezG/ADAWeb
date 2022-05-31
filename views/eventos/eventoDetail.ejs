@@ -21,57 +21,57 @@
     <!------ Include the above in your HEAD tag ---------->
     
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800&display=swap" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"><div class="pd-wrap">
-            <div class="container">
-                <div class="heading-section">
-                    <h2><%= evento.nameEvent %> </h2>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"><div class="pd-wrap">
+        <div class="container">
+            <div class="heading-section">
+                <h2><%= evento.nameEvent %> </h2>
+            </div>
+            <div class="row">
+                <div class="col-sm" >
+                    <img src="/eventos/img/<%= evento.imageEvent ? evento.imageEvent: 'th-3339243262' %>" style="width: 70%; height:90%"  >
                 </div>
-                <div class="row">
-                    <div class="col-sm" >
-                        <img src="/eventos/img/<%= evento.imageEvent ? evento.imageEvent: 'th-3339243262' %>" style="width: 70%; height:90%"  >
-                     
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="product-dtl">
-                           
-                            <!-- <p>Acompáñanos en nuestra tarde de películas donde se estará transmitiendo la película de Marie Curie.</p> -->
-                            <p>Fecha: <%= evento.dateEvent.toLocaleDateString(undefined, {timeZone: 'UTC', dateStyle: 'long'}) %> </p>
-                            <p>Horario: <%=evento.timeEvent %> hrs</p>
-                            <% if(evento.nameSpeaker){ %><p>Conferencista: <%=evento.nameSpeaker %></p> <% } %> 
-                            <p>Lugar: <%=evento.placeEvent %></p>
-                            <p>Contacto: <%=evento.contactEvent %></p>
-                            <%- include('./registro/registroAlerts'); %> 
-                           <% if(user) {%>
-                                <%- include('./registro/registroMember'); %>
-                                <% } else{ %> 
-                                    <button type="button" class="round-black-btn" data-bs-toggle="modal" data-bs-target="#registroUserModal" >Regístrate</button>
-                                     <%- include('./registro/registroUserModal'); %>
-                                <% } %>  
-                        </div>
+                <div class="col-md-6">
+                    <div class="product-dtl">
+                        <!-- <p>Acompáñanos en nuestra tarde de películas donde se estará transmitiendo la película de Marie Curie.</p> -->
+                        <p>Fecha: <%= evento.dateEvent.toLocaleDateString(undefined, {timeZone: 'UTC', dateStyle: 'long'}) %> </p>
+                        <p>Horario: <%=evento.timeEvent %> hrs</p>
+                        <% if(evento.nameSpeaker){ %>
+                            <p>Conferencista: <%=evento.nameSpeaker %></p> <% } %> 
+                        <p>Lugar: <%=evento.placeEvent %></p>
+                        <p>Contacto: <%=evento.contactEvent %></p>
+                        <%- include('./registro/registroAlerts'); %> 
+                        <% if(user) {%>
+                            <%- include('./registro/registroMember'); %>
+                            <% } else{ %> 
+                                <button type="button" class="round-black-btn" data-bs-toggle="modal" data-bs-target="#registroUserModal" >Regístrate</button>
+                                    <%- include('./registro/registroUserModal'); %>
+                            <% } %>  
                     </div>
                 </div>
-                <div class="product-info-tabs">
+             
                 
-
+                <!-- </div> -->
+                <div class="product-info-tabs">
                     <div class="d-flex justify-content-between align-items-center review-tab" id="event-tab">
                         <ul class="nav nav-tabs" id="eventTab" role="tablist">
                             <li class="nav-item  description_tab" id="tab-title-description">
-                            <a class="nav-link show active" href="#tab-description" data-bs-toggle="tab" role="tab" aria-controls="tab-description">
-                                Descripción         </a>
+                                <a class="nav-link show active" href="#tab-description" data-bs-toggle="tab" role="tab" aria-controls="tab-description">
+                                Descripción</a>
+                            </li>
                             <% if(user) {%> 
                                 <% if (user.position == "admin") {%>
-                                    </li>
+                                    
                                     <li class="nav-item  creator_tab" id="tab-title-reviews">
                                             <a class="nav-link " href="#tab-creator-details" data-bs-toggle="tab" role="tab" aria-controls="tab-reviews">
-                                            Detalles de publicación        </a>
+                                            Detalles de publicación </a>
                                      </li>
-                                    <%}}%>
-                            
-                                
-                            
+                                     <li class="nav-item  creator_tab" id="tab-title-participantes">
+                                            <a class="nav-link " href="#tab-participants" data-bs-toggle="tab" role="tab" aria-controls="tab-reviews">
+                                            Participantes </a>
+                                     </li>
+                            <%}}%> 
                         </ul>
                     </div>
                         <div class="tab-content px-0" id="tab-content">
@@ -87,9 +87,13 @@
                                     
                                     <% } %>  
                             </div>
+                            <div  class="tab-pane  pt-4 fade  woocommerce-Tabs-panel--reviews" id="tab-participants" role="tabpanel" aria-labelledby="tab-title-reviews">
+                                <%- include('../menuAdmin/tableParticipantes'); %>    
+                            </div>
                         </div>
                     </div>
                 </div>
+                   
             </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
