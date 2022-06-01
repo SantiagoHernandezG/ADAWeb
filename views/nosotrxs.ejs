@@ -134,12 +134,11 @@
 						  </form>
 					</p>
 					<ul>
-						<% wordclouds.forEach(function(wordclouds){ %>
-							
-							<% console.log(wordcloud.descripcion) %>
-							
-							<!-- Assign const worldcloud values in wordclouds.descripcion -->
-
+						<% wordclouds.forEach(function(wordclouds){ %>							
+							<% console.log(wordclouds.descripcion) %>	
+							 <%= wordclouds.descripcion %>;
+				
+							<!--Assign const worldcloud values in wordclouds.descripcion -->
 						  <% }); %>
 					</ul>
 				</figure>
@@ -153,14 +152,22 @@
 			<!--<script>
 			const wordclouds =  JSON.stringify(wordclouds[i].descripcion)%>;
 				//var wordcloud = wordclouds[i].descripcion;
-			</script>-->
+			</script>
+		const text = " wordclouds[1].descripcion ",
+		-->
 		
 		<script>
-			
-			//const text = "<%= wordclouds[1].descripcion %>",
-				const text = '<%- JSON.stringify(level_tab) %>',
+			const lognitud = '<%= wordclouds.length %>';
+			console.log("Longutid: ",lognitud);
+			var words = "";
+			for(let i = 0; i < lognitud; i++){
+				words += "" + wordclouds[i].descripcion;
+				console.log(words);
+			}
+				const wordclouds = '<%- JSON.stringify(wordclouds[1].descripcion)%>';
+				console.log(wordclouds);
+				const text = '<%- JSON.stringify(wordclouds) %>',
 				lines = text.split(/[,\. ]+/g),
-				
 				data = lines.reduce((arr, word) => {
 					let obj = Highcharts.find(arr, obj => obj.name === word);
 					if (obj) {
