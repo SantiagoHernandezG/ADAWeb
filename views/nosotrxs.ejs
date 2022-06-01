@@ -130,43 +130,22 @@
 								<label for="floatingInput">Describe a Ada Women en una palabra</label>
 							  </div>
 							  <!--onClick="window.location.reload();"-->
-							<button type="submit" onClick="window.location.reload();" class="btn btn-primary col-4">Sube tú opinion</button>
+							  <a href="/">
+							<button type="submit"  class="btn btn-primary col-4">Sube tú opinion</button>
+						</a>
 						  </form>
 					</p>
-					<ul>
-						<% wordclouds.forEach(function(wordclouds){ %>							
-							<% console.log(wordclouds.descripcion) %>	
-							 <%= wordclouds.descripcion %>;
-				
-							<!--Assign const worldcloud values in wordclouds.descripcion -->
-						  <% }); %>
-					</ul>
 				</figure>
 			</div>
 		</div>
-		<!--Script que maneja el grafico de las palabras mas destacadas del grupo
-		
- for(let i = 0; i < wordclouds.length; i++) 
-			 wordclouds[i].descripcion 
-			 } %>  -->
-			<!--<script>
-			const wordclouds =  JSON.stringify(wordclouds[i].descripcion)%>;
-				//var wordcloud = wordclouds[i].descripcion;
-			</script>
-		const text = " wordclouds[1].descripcion ",
-		-->
-		
+		<!--Script que maneja el grafico de las palabras mas destacadas del grupo-->
 		<script>
-			const lognitud = '<%= wordclouds.length %>';
-			console.log("Longutid: ",lognitud);
-			var words = "";
-			for(let i = 0; i < lognitud; i++){
-				words += "" + wordclouds[i].descripcion;
-				console.log(words);
-			}
-				const wordclouds = '<%- JSON.stringify(wordclouds[1].descripcion)%>';
-				console.log(wordclouds);
-				const text = '<%- JSON.stringify(wordclouds) %>',
+			// Asignar palabras de la base de datos al gráfico 'wordlcoud'
+			var palabras = "";
+			'<% for(let i = 0; i < wordclouds.length; i++){ %>'
+			palabras += " " + '<%= wordclouds[i].descripcion %>';
+			'<% } %>'
+				const text = palabras,
 				lines = text.split(/[,\. ]+/g),
 				data = lines.reduce((arr, word) => {
 					let obj = Highcharts.find(arr, obj => obj.name === word);
