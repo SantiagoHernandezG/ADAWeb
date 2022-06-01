@@ -11,6 +11,11 @@ exports.eventos_get = function  (req, res) {
     })
 }
 
+const getMembersAndUsers = function (nombre){
+  
+    console.log("hola ", nombre)
+}
+
 exports.evento_get = async (req, res)  => {
    const  {eventName } = req.params;
    let members;
@@ -31,6 +36,8 @@ exports.evento_get = async (req, res)  => {
             members = false;
             users = false;
         }
+       
+
     res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: false, members: members, users: users })
    } catch (err){
         console.log(err)

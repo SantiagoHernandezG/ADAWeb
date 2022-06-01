@@ -18,7 +18,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!------ Include the above in your HEAD tag ---------->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
@@ -73,10 +73,11 @@
                                             <a class="nav-link " href="#tab-participantes" data-bs-toggle="tab" role="tab" aria-controls="tab-reviews">
                                             Participantes        </a>
                                      </li>
+                                     <li class="nav-item  creator_tab" id="tab-title-reviews">
+                                            <a class="nav-link " href="#tab-estadisticas" data-bs-toggle="tab" role="tab" aria-controls="tab-reviews">
+                                            Estadísticas       </a>
+                                     </li>
                                     <%}}%>
-                            
-                                
-                            
                         </ul>
                     </div>
                         <div class="tab-content px-0" id="tab-content">
@@ -91,12 +92,107 @@
                                     <p>ID del actualizador: <%=evento.updatedById %></p>
                                     <% } %>  
                         </div>
-                        <div class="tab-pane  pt-4 fade  woocommerce-Tabs-panel--reviews" id="tab-participantes" role="tabpanel" >
-                            <% if(members) {%> 
-                                 <%- include('../admin/tableParticipantesEventos'); %>
-                            <% } %>  
+                        <div class="tab-pane  pt-4 fade  woocommerce-Tabs-panel--reviews" id="tab-participantes" role="tabpanel" >  
+                                 <table class="table align-middle mb-0 bg-white">
+                                    <thead class="bg-light">
+                                        <tr>
+                                        <th>Nombre</th>
+                                        <th>Posición</th>
+                                        <th></th>
+                                        <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                         <% if(members ) {%> 
+                                            <% for (let i = 0; i < members.length; i++ ){ %>
+                                                <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                
+
+                                                    <img
+                                                    
+                                                        src="<%= members[i].image ? members[i].image : '/imagenes/profile-default.jpg' %>"
+                                                        alt=""
+                                                        style="width: 45px; height: 45px"
+                                                        class="rounded-circle"
+                                                        />
+                                                    <div class="ms-3">
+                                                        <p class="fw-bold mb-1"><%= members[i].displayName %></p>
+                                                        <p class="text-muted mb-0"><%= members[i].email %></p>
+                                                    </div>
+                                                    </div>
+                                                </td>
+
+                                                <td> <%= members[i].position %>  </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                                    Edit
+                                                    </button>
+                                                </td>
+                                                </tr>
+
+                                                <%} }%>
+                                                <% if(users ) {%> 
+                                        
+                                                <% for (let i = 0; i < users.length; i++ ){ %>
+                                                <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                
+
+                                                    <img
+                                                    
+                                                        src="<%='/imagenes/profile-default.jpg' %>"
+                                                        alt=""
+                                                        style="width: 45px; height: 45px"
+                                                        class="rounded-circle"
+                                                        />
+                                                    <div class="ms-3">
+                                                        <p class="fw-bold mb-1"><%= users[i].nameUser %></p>
+                                                        <p class="text-muted mb-0"><%= users[i].emailUser %></p>
+                                                    </div>
+                                                    </div>
+                                                </td>
+
+                                                <td> Anónimo </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                                    Edit
+                                                    </button>
+                                                </td>
+                                                </tr>
+
+                                                <%} }%>
+
+                                    </tbody>
+                                    </table> 
+                            
                             
                         </div>
+                        <div class="tab-pane  pt-4 fade  woocommerce-Tabs-panel--reviews" id="tab-estadisticas" role="tabpanel">
+                            <div id="myPlot" style="width:100%;max-width:700px"></div>
+
+                        <script>
+                            var xArray = ["Miembrxs", "Usuarixs", "Becarixs", "Admin"];
+                            let miembrxs = members.filter(element => element.postion == "member").length
+                        
+                            var yArray = [1, 49, 44, 24];
+
+                            var data = [{
+                            x:xArray,
+                            y:yArray,
+                            type:"bar"
+                            }];
+
+                            var layout = {title:`Participantes registrados`};
+
+                            Plotly.newPlot("myPlot", data, layout);
+                        </script>
+
+                        </div>
+
+
                         
                         </div>
                     </div>
