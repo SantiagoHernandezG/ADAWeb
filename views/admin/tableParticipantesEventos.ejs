@@ -38,6 +38,35 @@
 
             <%} %>
     
+             <% for (let i = 0; i < users.length; i++ ){ %>
+            <tr>
+            <td>
+                <div class="d-flex align-items-center">
+            
+
+                <img
+                
+                    src="<%='/imagenes/profile-default.jpg' %>"
+                    alt=""
+                    style="width: 45px; height: 45px"
+                    class="rounded-circle"
+                    />
+                <div class="ms-3">
+                    <p class="fw-bold mb-1"><%= users[i].nameUser %></p>
+                    <p class="text-muted mb-0"><%= users[i].emailUser %></p>
+                </div>
+                </div>
+            </td>
+
+            <td> Anónimo </td>
+            <td>
+                <button type="button" class="btn btn-link btn-sm btn-rounded">
+                Edit
+                </button>
+            </td>
+            </tr>
+
+            <%} %>
 
   </tbody>
 </table> 

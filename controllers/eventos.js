@@ -14,24 +14,24 @@ exports.eventos_get = function  (req, res) {
 exports.evento_get = async (req, res)  => {
    const  {eventName } = req.params;
    let members;
-   let anonimos ;
+   let users ;
    try{
         let evento = await Evento.findById(eventName)
         if(req.user){
             if(req.user.position == "admin"){
                 members = []  
                 const membersEvent = await RegistroEventoMember.find({idEvent: eventName})
-                membersEvent.forEach(async m =>{
-                    const member = await User.findById(m.idMember)
-                    members.push(member) 
-                })
-            anonimos = await RegistroEventoUser.find({idEvent:eventName })
+                for(let i = 0 ; i < membersEvent.length; i++){
+                    const member = await User.findById(membersEvent[i].idMember)
+                     members.push(member) 
+                }
+            users = await RegistroEventoUser.find({idEvent:eventName })
             }
         } else{
             members = false;
-            usuarios = false;
+            users = false;
         }
-    res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: false, members: members, anonimos: anonimos })
+    res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: false, members: members, users: users })
    } catch (err){
         console.log(err)
    }
