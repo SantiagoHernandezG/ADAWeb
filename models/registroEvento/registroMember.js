@@ -6,11 +6,11 @@ const RegistroMiembroSchema = new mongoose.Schema ({
 		type: String,
 		required: true
 	},
-	nameMember: {
+	idMember: {
 		type:String,
 		required: true
 	},
-	idMember: {
+	email: {
 		type:String,
 		required: true
 	},

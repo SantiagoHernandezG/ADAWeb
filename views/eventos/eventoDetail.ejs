@@ -61,12 +61,17 @@
                             <li class="nav-item  description_tab" id="tab-title-description">
                             <a class="nav-link show active" href="#tab-description" data-bs-toggle="tab" role="tab" aria-controls="tab-description">
                                 Descripción         </a>
+                            </li>
                             <% if(user) {%> 
                                 <% if (user.position == "admin") {%>
-                                    </li>
+                                    
                                     <li class="nav-item  creator_tab" id="tab-title-reviews">
                                             <a class="nav-link " href="#tab-creator-details" data-bs-toggle="tab" role="tab" aria-controls="tab-reviews">
                                             Detalles de publicación        </a>
+                                     </li>
+                                     <li class="nav-item  creator_tab" id="tab-title-reviews">
+                                            <a class="nav-link " href="#tab-participantes" data-bs-toggle="tab" role="tab" aria-controls="tab-reviews">
+                                            Participantes        </a>
                                      </li>
                                     <%}}%>
                             
@@ -77,16 +82,22 @@
                         <div class="tab-content px-0" id="tab-content">
                             <div class="tab-pane  pt-4 fade show active woocommerce-Tabs-panel--description" id="tab-description" role="tabpanel" aria-labelledby="tab-title-description">
                                 <p><%=evento.descriptionEvent %></p>
-                            </div>
-                            <div class="tab-pane  pt-4 fade  woocommerce-Tabs-panel--reviews" id="tab-creator-details" role="tabpanel" aria-labelledby="tab-title-reviews">
+                        </div>
+                        <div class="tab-pane  pt-4 fade  woocommerce-Tabs-panel--reviews" id="tab-creator-details" role="tabpanel" aria-labelledby="tab-title-reviews">
                                 <p>Evento creado por: <%=evento.creatorName %></p>
                                 <p>ID del creador: <%=evento.creatorId %></p>
                                 <% if(evento.updatedByName) {%> 
                                     <p>Evento actualizado por: <%=evento.updatedByName %></p>
                                     <p>ID del actualizador: <%=evento.updatedById %></p>
-                                    
                                     <% } %>  
-                            </div>
+                        </div>
+                        <div class="tab-pane  pt-4 fade  woocommerce-Tabs-panel--reviews" id="tab-participantes" role="tabpanel" >
+                            <% if(members) {%> 
+                                 <%- include('../admin/tableParticipantesEventos'); %>
+                            <% } %>  
+                            
+                        </div>
+                        
                         </div>
                     </div>
                 </div>

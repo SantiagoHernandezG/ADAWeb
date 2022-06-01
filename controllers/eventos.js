@@ -2,6 +2,7 @@ const Evento = require('../models/evento')
 const RegistroEventoMember = require('../models/registroEvento/registroMember')
 const RegistroEventoUser = require('../models/registroEvento/registroUsuario')
 const mailer = require('./apis/mailer')
+const User = require('../models/User')
 
 exports.eventos_get = function  (req, res) {
     Evento.find({}, function (err, eventos) {
@@ -12,13 +13,27 @@ exports.eventos_get = function  (req, res) {
 
 exports.evento_get = async (req, res)  => {
    const  {eventName } = req.params;
+   let members;
+   let anonimos ;
    try{
-      let evento = await Evento.findById(eventName)
-    //   console.log("Evento encontrado",evento)
-      res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: false})
-
+        let evento = await Evento.findById(eventName)
+        if(req.user){
+            if(req.user.position == "admin"){
+                members = []  
+                const membersEvent = await RegistroEventoMember.find({idEvent: eventName})
+                membersEvent.forEach(async m =>{
+                    const member = await User.findById(m.idMember)
+                    members.push(member) 
+                })
+            anonimos = await RegistroEventoUser.find({idEvent:eventName })
+            }
+        } else{
+            members = false;
+            usuarios = false;
+        }
+    res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: false, members: members, anonimos: anonimos })
    } catch (err){
-    console.log(err)
+        console.log(err)
    }
 }
 
@@ -69,8 +84,8 @@ exports.evento_registrar_post = async(req, res) => {
             registrado = await RegistroEventoMember.findOne({idMember: req.user._id, idEvent: req.body.idEvent})
             newRegistro = {
                 idEvent: req.body.idEvent,
-                nameMember: req.body.nameMember,
                 idMember: req.body.idMember,
+                email: req.body.email
             }
             text = `Gracias ${req.user.displayName} por registrarte en el evento ${evento.nameEvent}. Estamos muy emocionados de recibirte.`
             to = req.user.email
@@ -91,7 +106,7 @@ exports.evento_registrar_post = async(req, res) => {
         ${evento.timeEvent} hrs en ${evento.placeEvent}. La descripción del evento es la siguiente: ${evento.descriptionEvent}. Cualquier duda o aclaración
         no dudes en contactarte con ${evento.contactEvent}. ¡Saludos!
         `
-        if(!(registrado == null)){
+        if(registrado){
             res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: 'registrado'})
         }else{
             req.user ? await RegistroEventoMember.create(newRegistro) : await RegistroEventoUser.create(newRegistro)
