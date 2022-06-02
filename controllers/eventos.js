@@ -11,34 +11,36 @@ exports.eventos_get = function  (req, res) {
     })
 }
 
-const getMembersAndUsers = function (nombre){
-  
-    console.log("hola ", nombre)
+const getMembersAndUsers = async function ( result, idEvent, user){
+    try{
+        result.evento = await Evento.findById(idEvent)
+        if(user){
+            if(user.position == "admin"){
+                result.members = []
+                 
+                const membersEvent = await RegistroEventoMember.find({idEvent: idEvent})
+                for(let i = 0 ; i < membersEvent.length; i++){
+                    const member = await User.findById(membersEvent[i].idMember)
+                     result.members.push(member) 
+                }
+                result.users = await RegistroEventoUser.find({idEvent:idEvent }) 
+            }
+        }else{
+            result.members = false;
+            result.users = false;
+        }
+    }catch (err){
+        console.log(err)
+    }  
 }
 
 exports.evento_get = async (req, res)  => {
    const  {eventName } = req.params;
-   let members;
-   let users ;
+   
    try{
-        let evento = await Evento.findById(eventName)
-        if(req.user){
-            if(req.user.position == "admin"){
-                members = []  
-                const membersEvent = await RegistroEventoMember.find({idEvent: eventName})
-                for(let i = 0 ; i < membersEvent.length; i++){
-                    const member = await User.findById(membersEvent[i].idMember)
-                     members.push(member) 
-                }
-            users = await RegistroEventoUser.find({idEvent:eventName })
-            }
-        } else{
-            members = false;
-            users = false;
-        }
-       
-
-    res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: false, members: members, users: users })
+       let result = {members: undefined, users: undefined, evento: undefined}
+        await getMembersAndUsers(result, eventName, req.user)
+        res.render('./eventos/eventoDetail',  { user: req.user, evento: result.evento, registro: false, members: result.members, users: result.users })
    } catch (err){
         console.log(err)
    }
@@ -59,11 +61,13 @@ exports.evento_post =  async (req, res) => {
     }
     try{
         let event = await Evento.create(newEvent)
-        res.render('./eventos/eventoDetail',  { user: req.user, evento: event, registro: false })
+        let result = {members: undefined, users: undefined, evento: undefined}
+         await getMembersAndUsers(result, "", req.user)
+
+        res.render('./eventos/eventoDetail',  { user: req.user, evento: event, registro: false , members: result.members, users: result.users})
     } catch (err){
         console.log(err)
     }
-	
 }
 
 exports.evento_delete_post = async (req, res) => {
