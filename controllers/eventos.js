@@ -150,9 +150,6 @@ exports.evento_update_post = async (req, res) => {
         await Evento.findByIdAndUpdate(req.body.idEvent, updateEvent)
         let result = {members: undefined, users: undefined, evento: undefined}
         await getMembersAndUsers(result, req.body.idEvent, req.user)
-        // let evento = await Evento.findById(req.body.idEvent)
-
-        // console.log("evento encontrado", evento)
         res.render('./eventos/eventoDetail',  { user: req.user, evento: result.evento, registro: false, members: result.members, users: result.users})
     } catch (err) {
         console.log(err)

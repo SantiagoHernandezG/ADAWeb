@@ -167,6 +167,8 @@
 
                                     </tbody>
                                     </table> 
+
+                  
                             
                             
                         </div>
@@ -175,10 +177,16 @@
 
                         <script>
                             var xArray = ["Miembrxs", "Usuarixs", "Becarixs", "Admin"];
-                            let miembrxs = members.filter(element => element.postion == "member").length
+                             const count = {}                        
+                            for(const participant of JSON.parse('<%- JSON.stringify(members) %>')){
+                                if(count[participant.position]){
+                                    count[participant.position] += 1
+                                }else{
+                                    count[participant.position] = 1
+                                }
+                            }
                         
-                            var yArray = [1, 49, 44, 24];
-
+                            var yArray = [count.member ? count.member : 0,JSON.parse('<%- JSON.stringify(users) %>').length , count.becario ? count.becario : 0, count.admin ? count.admin : 0];
                             var data = [{
                             x:xArray,
                             y:yArray,
@@ -188,7 +196,10 @@
                             var layout = {title:`Participantes registrados`};
 
                             Plotly.newPlot("myPlot", data, layout);
+
+                            
                         </script>
+                        <h5>Total: <%= members.length + users.length %> participantes</h5>
 
                         </div>
 
