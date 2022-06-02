@@ -199,7 +199,8 @@
 
                             
                         </script>
-                        <h5>Total: <%= members.length + users.length %> participantes</h5>
+                        
+                        <h5>Total: <% let count = 0; count += members ? members.length : 0; count += users ? users.length : 0;%> <%= count%> participantes</h5>
 
                         </div>
 
