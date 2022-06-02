@@ -61,10 +61,8 @@ exports.evento_post =  async (req, res) => {
     }
     try{
         let event = await Evento.create(newEvent)
-        let result = {members: undefined, users: undefined, evento: undefined}
-         await getMembersAndUsers(result, "", req.user)
 
-        res.render('./eventos/eventoDetail',  { user: req.user, evento: event, registro: false , members: result.members, users: result.users})
+        res.render('./eventos/eventoDetail',  { user: req.user, evento: event, registro: false , members: false, users: false})
     } catch (err){
         console.log(err)
     }
@@ -90,7 +88,10 @@ exports.evento_registrar_post = async(req, res) => {
     let registrado;
     let newRegistro;
     try{
-        evento = await Evento.findById(req.body.idEvent)
+        let result = {members: undefined, users: undefined, evento: undefined}
+        await getMembersAndUsers(result, req.body.idEvent, req.user)
+        // evento = await Evento.findById(req.body.idEvent)
+        evento = result.evento
         if(req.user){
             registrado = await RegistroEventoMember.findOne({idMember: req.user._id, idEvent: req.body.idEvent})
             newRegistro = {
@@ -117,17 +118,18 @@ exports.evento_registrar_post = async(req, res) => {
         ${evento.timeEvent} hrs en ${evento.placeEvent}. La descripción del evento es la siguiente: ${evento.descriptionEvent}. Cualquier duda o aclaración
         no dudes en contactarte con ${evento.contactEvent}. ¡Saludos!
         `
+        
         if(registrado){
-            res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: 'registrado'})
+            res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: 'registrado', members: result.members, users: result.users})
         }else{
             req.user ? await RegistroEventoMember.create(newRegistro) : await RegistroEventoUser.create(newRegistro)
             mailer.sendMail(to, subject, text).then(result => console.log("email sent...", result))
             .catch(error => console.log(error.message))
-            res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: 'exitoso'})
+            res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: 'exitoso', members: result.members, users: result.users})
         }
         
     } catch (err){
-       res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: 'error'})
+       res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: 'error', members: result.members, users: result.users})
     }
 }
 
@@ -144,14 +146,14 @@ exports.evento_update_post = async (req, res) => {
         updatedById: req.user._id,
         
     }
-    let idEvent = req.body.idEvent
-    console.log(idEvent)
     try {
         await Evento.findByIdAndUpdate(req.body.idEvent, updateEvent)
-        let evento = await Evento.findById(req.body.idEvent)
+        let result = {members: undefined, users: undefined, evento: undefined}
+        await getMembersAndUsers(result, req.body.idEvent, req.user)
+        // let evento = await Evento.findById(req.body.idEvent)
 
-        console.log("evento encontrado", evento)
-        res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: false})
+        // console.log("evento encontrado", evento)
+        res.render('./eventos/eventoDetail',  { user: req.user, evento: result.evento, registro: false, members: result.members, users: result.users})
     } catch (err) {
         console.log(err)
 
