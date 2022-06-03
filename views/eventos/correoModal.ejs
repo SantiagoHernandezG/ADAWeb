@@ -1,0 +1,40 @@
+<div class="modal fade" id="correoModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <form class="form-horizontal" action="#" method="POST" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Correo de evento: <%= evento.nameEvent %></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="emailUser" required="true" >
+                    <label for="floatingInput">Correos </label>
+                </div>
+				<div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="nameUser" required="true" value="">
+                    <label for="floatingPassword">Asunto</label>
+                </div>
+				<div class="form-floating">
+					<textarea class="form-control" name="descriptionEvent" placeholder="Leave a comment here" id="floatingTextarea2"
+						style="height: 100px" required="true"></textarea>
+					<label for="floatingTextarea2">Mensaje</label>
+				</div>
+
+                <div class="visually-hidden">
+                    <input type="text"  name="idEvent" required="true" value="<%= evento._id.toString() %>" >
+                </div>
+
+                
+            </div>
+            <div class="modal-footer">
+                <button type="submit"  class="btn btn-primary" >Enviar</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </form>
+        </div>
+    
+    </div>
+</div>

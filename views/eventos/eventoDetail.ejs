@@ -92,21 +92,59 @@
                                     <p>ID del actualizador: <%=evento.updatedById %></p>
                                     <% } %>  
                         </div>
-                        <div class="tab-pane  pt-4 fade  woocommerce-Tabs-panel--reviews" id="tab-participantes" role="tabpanel" >  
+
+                        <div class="tab-pane pt-4 fade  woocommerce-Tabs-panel--reviews text-right" id="tab-participantes" role="tabpanel" > 
+                        
+                               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#correoModal" >Enviar correo</button>
+                                <%- include('correoModal'); %>
+                         
+                            <br>
+
                                  <table class="table align-middle mb-0 bg-white">
                                     <thead class="bg-light">
                                         <tr>
                                         <th>Nombre</th>
                                         <th>Posición</th>
+                                        <th class="checkbox">
+                                           
+                                            <button type="button" class="btn btn-outline-primary" onclick='checkAll()'  >Select All</button>
+                                            <button type="button" class="btn btn-outline-secondary" onclick="uncheckAll()">Clear</button>
+                            
+                                            <script>
+                                                function checkAll(){
+                                                    
+                                                var items = document.getElementsByName('participante');
+                                                    for (var i = 0; i < items.length; i++) {
+                                                        if (items[i].type == 'checkbox')
+                                                            items[i].checked = true;
+                                                    }
+                                                }
+
+                                                 function uncheckAll(){
+                                                    var items = document.getElementsByName('participante');
+                                                    for (var i = 0; i < items.length; i++) {
+                                                        if (items[i].type == 'checkbox')
+                                                            items[i].checked = false;
+                                                    }
+                                                }
+
+                                            </script>
+                                           
+                                        </th>
+                                        
                                         <th></th>
-                                        <th></th>
+                                        
                                         </tr>
                                     </thead>
                                     <tbody>
                                          <% if(members ) {%> 
                                             <% for (let i = 0; i < members.length; i++ ){ %>
                                                 <tr>
+                                                    
+
+                                                         
                                                 <td>
+                                                   
                                                     <div class="d-flex align-items-center">
                                                 
 
@@ -125,11 +163,19 @@
                                                 </td>
 
                                                 <td> <%= members[i].position %>  </td>
+                                                 <td class="checkbox">
+                                                        <div  >
+                                                            <input type="checkbox" name='participante' class="checkbox"  >
+                                                        </div>
+                                                        
+                                                 </td>
                                                 <td>
-                                                    <button type="button" class="btn btn-link btn-sm btn-rounded">
-                                                    Edit
-                                                    </button>
+                                                     <form action="/eventos/delete" method="POST"></form>
+                                                        <button class="btn btn-danger btn-sm rounded-0" type="button"  title="Delete" data-bs-toggle="modal"
+                                                        data-bs-target="#deleteEventModal-<%= evento._id.toString() %>"><i class="fa fa-trash" ></i></button>
+                                                    </form>
                                                 </td>
+                                               
                                                 </tr>
 
                                                 <%} }%>
@@ -156,10 +202,12 @@
                                                 </td>
 
                                                 <td> Anónimo </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-link btn-sm btn-rounded">
-                                                    Edit
-                                                    </button>
+                                                <td> 
+                                                    <form action="/eventos/delete" method="POST"></form>
+                                                        <button class="btn btn-danger btn-sm rounded-0" type="button"  title="Delete" data-bs-toggle="modal"
+                                                        data-bs-target="#deleteEventModal-<%= evento._id.toString() %>"><i class="fa fa-trash" ></i></button>
+                                                    </form>
+                                                    
                                                 </td>
                                                 </tr>
 
@@ -214,5 +262,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <%- include('../usuario/iniciarSesion'); %>
+ 
     </body>
 </html>

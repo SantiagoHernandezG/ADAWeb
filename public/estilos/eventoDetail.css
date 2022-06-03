@@ -278,3 +278,8 @@
     max-height: 100%; 
 
    }
+
+.checkbox{
+    text-align: center;
+ /*Centering the text in a td of the table*/
+  }
