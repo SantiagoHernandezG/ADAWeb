@@ -2,20 +2,17 @@ const mongoose = require('mongoose')
 
 const UserSchema  = new mongoose.Schema({
     googleId: {
-        type: String,
-        required: true
+        type: String
     },
     displayName: {
         type: String,
         required: true
     },
     firstName: {
-        type: String,
-        required: true
+        type: String
     },
     lastName: {
-        type: String,
-        required: true
+        type: String
     },
     image: {
         type: String
@@ -28,6 +25,9 @@ const UserSchema  = new mongoose.Schema({
         type: String,
         required: true
 
+    },
+    password: {
+        type: String
     },
     createdAt: {
         type: Date,

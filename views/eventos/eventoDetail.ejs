@@ -95,13 +95,14 @@
 
                         <div class="tab-pane pt-4 fade  woocommerce-Tabs-panel--reviews" id="tab-participantes" role="tabpanel" > 
                             <div class="text-right">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#correoModal" >Enviar correo</button>
+                                <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#correoModal" form="correos-participantes" >Enviar correo</button>
 
                             </div>
                                
                                 <%- include('correoModal'); %>
                          
                             <br>
+                             <form id="correos-participantes">
 
                                  <table class="table align-middle mb-0 bg-white">
                                     <thead class="bg-light">
@@ -130,6 +131,17 @@
                                                             items[i].checked = false;
                                                     }
                                                 }
+
+                                                document.querySelector('#correos-participantes').addEventListener('submit', function(e) {
+                                                    // para que no se vuelva a cargar la página
+                                                    e.preventDefault();
+                                                    // target trae el form
+                                                    const emails = new Array()
+                                                    const data = new FormData(e.target);
+                                                    for (const entry of data.entries())
+                                                        emails.push(entry[1])
+                                                    document.getElementById('emailUser').value = emails
+                                                })
 
                                             </script>
                                            
@@ -166,9 +178,9 @@
                                                 </td>
 
                                                 <td> <%= members[i].position %>  </td>
-                                                 <td class="checkbox">
+                                                 <td class="checkbox" >
                                                         <div  >
-                                                            <input type="checkbox" name='participante' class="checkbox"  >
+                                                            <input type="checkbox" name='participante' class="checkbox" value="<%= members[i].email %>"  checked>
                                                         </div>
                                                         
                                                  </td>
@@ -207,7 +219,7 @@
                                                 <td> Anónimo </td>
                                                  <td class="checkbox">
                                                         <div  >
-                                                            <input type="checkbox" name='participante' class="checkbox"  >
+                                                            <input type="checkbox" name='participante' class="checkbox" value="<%= users[i].emailUser %>" >
                                                         </div>
                                                         
                                                  </td>
@@ -225,7 +237,7 @@
                                     </tbody>
                                     </table> 
 
-                  
+                            </form>
                             
                             
                         </div>

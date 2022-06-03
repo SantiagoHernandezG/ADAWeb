@@ -36,7 +36,7 @@ exports.sendMail = async(toEmail, subjectEmail, textEmail) => {
         return result
 
     } catch (err) {
-
+        console.log(err)
     }
     
 }

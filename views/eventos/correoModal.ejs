@@ -1,6 +1,6 @@
 <div class="modal fade" id="correoModal" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <form class="form-horizontal" action="#" method="POST" >
+    <form class="form-horizontal" action="/eventos/participantes/correo" method="POST" >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -10,15 +10,15 @@
             <div class="modal-body">
                 
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="emailUser" required="true" >
+                    <input type="text" class="form-control" name="emailUser" required="true" id="emailUser">
                     <label for="floatingInput">Correos </label>
                 </div>
 				<div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="nameUser" required="true" value="">
+                    <input type="text" class="form-control" name="asunto" required="true" value="">
                     <label for="floatingPassword">Asunto</label>
                 </div>
 				<div class="form-floating">
-					<textarea class="form-control" name="descriptionEvent" placeholder="Leave a comment here" id="floatingTextarea2"
+					<textarea class="form-control" name="messageText" placeholder="Leave a comment here" id="floatingTextarea2"
 						style="height: 100px" required="true"></textarea>
 					<label for="floatingTextarea2">Mensaje</label>
 				</div>

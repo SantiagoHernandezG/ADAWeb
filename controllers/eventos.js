@@ -155,5 +155,14 @@ exports.evento_update_post = async (req, res) => {
         console.log(err)
 
     }
-
 }
+
+exports.evento_correo_participantes_post = (req, res) => {
+
+    console.log(req.body)
+    const mails = req.body.emailUser.split(',')
+    console.log(mails)
+    mailer.sendMail(req.body.emailUser, req.body.asunto, req.body.messageText).then(result => console.log("email sent...", result))
+    res.end()
+}
+
