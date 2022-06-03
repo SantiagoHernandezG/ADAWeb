@@ -93,9 +93,12 @@
                                     <% } %>  
                         </div>
 
-                        <div class="tab-pane pt-4 fade  woocommerce-Tabs-panel--reviews text-right" id="tab-participantes" role="tabpanel" > 
-                        
-                               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#correoModal" >Enviar correo</button>
+                        <div class="tab-pane pt-4 fade  woocommerce-Tabs-panel--reviews" id="tab-participantes" role="tabpanel" > 
+                            <div class="text-right">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#correoModal" >Enviar correo</button>
+
+                            </div>
+                               
                                 <%- include('correoModal'); %>
                          
                             <br>
@@ -170,7 +173,7 @@
                                                         
                                                  </td>
                                                 <td>
-                                                     <form action="/eventos/delete" method="POST"></form>
+                                                     <form action="#" method="POST"></form>
                                                         <button class="btn btn-danger btn-sm rounded-0" type="button"  title="Delete" data-bs-toggle="modal"
                                                         data-bs-target="#deleteEventModal-<%= evento._id.toString() %>"><i class="fa fa-trash" ></i></button>
                                                     </form>
@@ -202,8 +205,14 @@
                                                 </td>
 
                                                 <td> Anónimo </td>
+                                                 <td class="checkbox">
+                                                        <div  >
+                                                            <input type="checkbox" name='participante' class="checkbox"  >
+                                                        </div>
+                                                        
+                                                 </td>
                                                 <td> 
-                                                    <form action="/eventos/delete" method="POST"></form>
+                                                    <form action="#" method="POST"></form>
                                                         <button class="btn btn-danger btn-sm rounded-0" type="button"  title="Delete" data-bs-toggle="modal"
                                                         data-bs-target="#deleteEventModal-<%= evento._id.toString() %>"><i class="fa fa-trash" ></i></button>
                                                     </form>
