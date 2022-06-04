@@ -4,11 +4,13 @@ const RegistroEventoUser = require('../models/registroEvento/registroUsuario')
 const mailer = require('./apis/mailer')
 const User = require('../models/User')
 
-exports.eventos_get = function  (req, res) {
-    Evento.find({}, function (err, eventos) {
-        if (err) console.log(err)
+exports.eventos_get = async function  (req, res) {
+    try{
+       let eventos = await Evento.find({})
         res.render('./eventos/eventos',  { user: req.user, eventos: eventos, registro: false })
-    })
+    } catch (err){
+        console.log(err)
+    }
 }
 
 const getMembersAndUsers = async function ( result, idEvent, user){
@@ -36,7 +38,6 @@ const getMembersAndUsers = async function ( result, idEvent, user){
 
 exports.evento_get = async (req, res)  => {
    const  {eventName } = req.params;
-   
    try{
        let result = {members: undefined, users: undefined, evento: undefined}
         await getMembersAndUsers(result, eventName, req.user)
@@ -99,7 +100,7 @@ exports.evento_registrar_post = async(req, res) => {
                 idMember: req.body.idMember,
                 email: req.body.email
             }
-            text = `Gracias ${req.user.displayName} por registrarte en el evento ${evento.nameEvent}. Estamos muy emocionados de recibirte.`
+            text = `¡Gracias ${req.user.displayName} por registrarte en el evento ${evento.nameEvent}!`
             to = req.user.email
 
         }else{
@@ -109,12 +110,12 @@ exports.evento_registrar_post = async(req, res) => {
                 nameUser: req.body.nameUser,
                 emailUser: req.body.emailUser,
             }
-            text = `¡Gracias ${req.body.nameUser} por registrarte en el evento ${evento.nameEvent}! Estamos muy emocionados por recibirte.`
+            text = `¡Gracias ${req.body.nameUser} por registrarte en el evento ${evento.nameEvent}!`
             to = req.body.emailUser
             
         }
         subject = `Confirmación de registro al evento ${evento.nameEvent}`
-        text +=  ` El evento se llevará a cabo el día ${evento.dateEvent.toLocaleDateString(undefined, {timeZone: 'UTC', dateStyle: 'long'})} a las 
+        text +=  ` ¡Estamos muy emocionados de recibirte! El evento se llevará a cabo el día ${evento.dateEvent.toLocaleDateString(undefined, {timeZone: 'UTC', dateStyle: 'long'})} a las 
         ${evento.timeEvent} hrs en ${evento.placeEvent}. La descripción del evento es la siguiente: ${evento.descriptionEvent}. Cualquier duda o aclaración
         no dudes en contactarte con ${evento.contactEvent}. ¡Saludos!
         `
@@ -158,11 +159,7 @@ exports.evento_update_post = async (req, res) => {
 }
 
 exports.evento_correo_participantes_post = (req, res) => {
-
-    console.log(req.body)
-    const mails = req.body.emailUser.split(',')
-    console.log(mails)
     mailer.sendMail(req.body.emailUser, req.body.asunto, req.body.messageText).then(result => console.log("email sent...", result))
-    res.end()
+    res.redirect("/eventos/"+req.body.idEvent)
 }
 
