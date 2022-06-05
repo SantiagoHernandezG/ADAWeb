@@ -16,5 +16,6 @@ router.post("/delete", controllerEventos.evento_delete_post)
 router.post("/registrar", controllerEventos.evento_registrar_post)
 router.post("/update", controllerEventos.evento_update_post)
 router.post("/participantes/correo", controllerEventos.evento_correo_participantes_post)
+router.post("/deleteParticipante", controllerEventos.evento_delete_participante_post)
 
 module.exports = router

@@ -89,10 +89,9 @@ exports.evento_registrar_post = async(req, res) => {
     let registrado;
     let newRegistro;
     try{
-        let result = {members: undefined, users: undefined, evento: undefined}
-        await getMembersAndUsers(result, req.body.idEvent, req.user)
-        // evento = await Evento.findById(req.body.idEvent)
-        evento = result.evento
+        
+        evento = await Evento.findById(req.body.idEvent)
+        // evento = result.evento
         if(req.user){
             registrado = await RegistroEventoMember.findOne({idMember: req.user._id, idEvent: req.body.idEvent})
             newRegistro = {
@@ -119,11 +118,15 @@ exports.evento_registrar_post = async(req, res) => {
         ${evento.timeEvent} hrs en ${evento.placeEvent}. La descripción del evento es la siguiente: ${evento.descriptionEvent}. Cualquier duda o aclaración
         no dudes en contactarte con ${evento.contactEvent}. ¡Saludos!
         `
+        let result = {members: undefined, users: undefined, evento: undefined}
+        
         
         if(registrado){
+            await getMembersAndUsers(result, req.body.idEvent, req.user)
             res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: 'registrado', members: result.members, users: result.users})
         }else{
-            req.user ? await RegistroEventoMember.create(newRegistro) : await RegistroEventoUser.create(newRegistro)
+            req.user ? await RegistroEventoMember.create(newRegistro) : await RegistroEventoUser.create(newRegistro)   
+            await getMembersAndUsers(result, req.body.idEvent, req.user)
             mailer.sendMail(to, subject, text).then(result => console.log("email sent...", result))
             .catch(error => console.log(error.message))
             res.render('./eventos/eventoDetail',  { user: req.user, evento: evento, registro: 'exitoso', members: result.members, users: result.users})
@@ -161,5 +164,23 @@ exports.evento_update_post = async (req, res) => {
 exports.evento_correo_participantes_post = (req, res) => {
     mailer.sendMail(req.body.emailUser, req.body.asunto, req.body.messageText).then(result => console.log("email sent...", result))
     res.redirect("/eventos/"+req.body.idEvent)
+}
+
+
+exports.evento_delete_participante_post =  async (req, res) => {
+    console.log(req.body.memberId)
+    try{
+        if(req.body.memberPosition == "anonimo"){
+            await RegistroEventoUser.findByIdAndRemove(req.body.memberId)
+        } else{
+            await RegistroEventoMember.findOneAndDelete({idMember: req.body.memberId})
+        }
+    let result = {members: undefined, users: undefined, evento: undefined}
+    await getMembersAndUsers(result, req.body.idEvent, req.user)
+    res.render('./eventos/eventoDetail',  { user: req.user, evento: result.evento, registro: false, members: result.members, users: result.users})
+
+    } catch (err){
+        console.log(err)
+    }
 }
 

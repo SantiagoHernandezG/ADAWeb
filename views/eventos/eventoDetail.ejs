@@ -185,10 +185,10 @@
                                                         
                                                  </td>
                                                 <td>
-                                                     <form action="#" method="POST"></form>
                                                         <button class="btn btn-danger btn-sm rounded-0" type="button"  title="Delete" data-bs-toggle="modal"
-                                                        data-bs-target="#deleteEventModal-<%= evento._id.toString() %>"><i class="fa fa-trash" ></i></button>
-                                                    </form>
+                                                        data-bs-target="#deleteMemberModal-<%= members[i]._id.toString() %>"><i class="fa fa-trash" ></i></button>
+                                                          <%- include('deleteMemberModal',{member: members[i]}); %>
+                                                    
                                                 </td>
                                                
                                                 </tr>
@@ -224,10 +224,9 @@
                                                         
                                                  </td>
                                                 <td> 
-                                                    <form action="#" method="POST"></form>
-                                                        <button class="btn btn-danger btn-sm rounded-0" type="button"  title="Delete" data-bs-toggle="modal"
-                                                        data-bs-target="#deleteEventModal-<%= evento._id.toString() %>"><i class="fa fa-trash" ></i></button>
-                                                    </form>
+                                                    <button class="btn btn-danger btn-sm rounded-0" type="button"  title="Delete" data-bs-toggle="modal"
+                                                        data-bs-target="#deleteMemberModal-<%= users[i]._id.toString() %>"><i class="fa fa-trash" ></i></button>
+                                                          <%- include('deleteMemberModal',{member: users[i]}); %>
                                                     
                                                 </td>
                                                 </tr>
@@ -282,7 +281,7 @@
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <%- include('../usuario/iniciarSesion'); %>
+
  
     </body>
 </html>
