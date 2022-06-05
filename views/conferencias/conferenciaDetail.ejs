@@ -57,11 +57,14 @@
 									<%= conferencias.descripcion %>
 								</div>
 								<div class="row">
-								<div class="col-3 text-center">
+									<!--Verificar si existe un usuario para comentar-->
+									<% if (locals.user) { %> 
+										<%- console.log(user.displayName.substring(0, user.displayName.indexOf(' '))); %>
+								<div class="col-2">
 									 <img src=<%= user.image %> style="width: 70px;" class="rounded-circle"><br>
-									 <strong><%= user.displayName %></strong> 
+									 <strong><%= user.displayName.substring(0, user.displayName.indexOf(' ')); %></strong> 
 								 </div>
-									<div class="col-9">
+									<div class="col-10">
 									<form class="form-floating " action="/nosotrxs/wordcloud"  method="POST">
 										<div class="form-floating mb-3">
 											<input type="email" class="form-control" name="comentario" id="floatingInput" placeholder="name@example.com">
@@ -72,6 +75,7 @@
 									</a>
 									  </form>
 									</div>
+									<%} %>
 							  </div>
 							</div>
 							</div>

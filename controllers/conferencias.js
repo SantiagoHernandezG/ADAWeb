@@ -9,9 +9,9 @@ exports.conferencias_get = function (req, res) {
 }
 
 exports.conferencia_get = function (req, res) {
-	const { nombre } = req.params;
-	console.log(nombre);
-	Conferencia.findOne({ nombre: nombre }, function (err, conferencias) {
+	const { id } = req.params;
+	console.log(id);
+	Conferencia.findOne({ id: id }, function (err, conferencias) {
 		if (err){
 			console.log(err)
 		}
@@ -23,7 +23,7 @@ exports.conferencia_get = function (req, res) {
 }
 
 
-//Altas Conferencia
+//Altas Conferencia admin
 exports.conferencia_post =  function (req, res) {
 	Conferencia.find({}, function (err, conferencias) {
 
@@ -33,7 +33,8 @@ exports.conferencia_post =  function (req, res) {
 		fecha: req.body.fecha,
 		contacto: req.body.email,
 		imageConferencia: req.file.filename,
-		descripcion: req.body.descripcion		
+		descripcion: req.body.descripcion,
+		comentarios: [],		
 	}
 	console.log(newConferencia)
     try{
@@ -45,3 +46,22 @@ exports.conferencia_post =  function (req, res) {
 	res.render('./conferencias/conferencias',  { user: req.user, conferencias: conferencias})
 })
 }
+/*
+app.post('/comentar/:nombre/', upload.any(), async function(req, res, next) {
+	const { nombre } = req.params;
+	console.log('Nombre de la conferencia a editar: ' + nombre);
+	 await Conferencia.findByIdAndUpdate(nombre, { 
+		$set: {
+		comentarios: req.body.comentario }},
+		  function (err, docs) {
+			if (err) {
+				console.log(err)
+			}
+			else {
+				console.log("Conferencia editada : ", docs);
+				// newTrabajador.save();
+			}
+		})
+		res.render('./conferencias/conferencias',  { user: req.user, conferencias: conferencias})
+})
+*/
