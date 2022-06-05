@@ -15,8 +15,9 @@ const authCheck = (req, res, next) => {
 };
 
 router.get("/", controllerConferencias.conferencias_get)
-router.get('/conferencia/:nombre' ,  controllerConferencias.conferencia_get)
+router.get('/:id' ,  controllerConferencias.conferencia_get)
 router.post("/conferencia", upload.single('imageEvent'), controllerConferencias.conferencia_post)
+router.post("/conferencia/:id", controllerConferencias.conferencia_comentario_post)
 
 
 module.exports = router
