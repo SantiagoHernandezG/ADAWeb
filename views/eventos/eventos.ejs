@@ -12,7 +12,13 @@
   </head>
   <%- include('../header'); %>
   <body>
-    <div class="blog-home2 py-5">
+     
+    <div class="blog-home2 py-5" id="main-body">
+      <% if(user){ %>
+         <%if(user.position == "admin"){ %>
+           <%- include('../menuAdmin'); %>
+       <% }} %> 
+     
       <div class="container">
         <!-- Row  -->
         <div class="row justify-content-center">
