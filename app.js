@@ -12,6 +12,7 @@ var nosotrxsRouter = require('./routes/nosotrxs')
 var perfilRouter = require('./routes/perfil')
 var authRouter = require('./routes/auth')
 var homeRouter = require('./routes/home')
+var becarixsRouter = require('./routes/becarixs')
 
 const connectDB = require('./database/db')
 const morgan = require('morgan')
@@ -78,6 +79,7 @@ app.use('/perfil', perfilRouter)
 app.use('/auth', authRouter)
 app.use('/logout', authRouter)
 app.use('/home', homeRouter)
+app.use('/becarixs', becarixsRouter)
 
 //Inicio de servidor en puerto default
 app.listen(
