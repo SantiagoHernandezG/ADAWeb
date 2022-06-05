@@ -51,18 +51,18 @@ exports.conferencia_post =  function (req, res) {
 
 exports.conferencia_comentario_post = async function(req, res, next) {
 	const { id } = req.params;
-	console.log('Nombre de la conferencia a editar: ' + nombre);
+	console.log('Id de la conferencia a editar: ' + id);
 	 await Conferencia.findByIdAndUpdate(id, { 
 		$set: {
 		comentarios: req.body.comentario }},
-		  function (err, docs) {
+		  function (err, conferencias) {
 			if (err) {
 				console.log(err)
 			}
 			else {
-				console.log("Conferencia editada : ", docs);
+				console.log("Conferencia editada : ", conferencias);
 				// newTrabajador.save();
-			}
-		})
+			}	
 		res.render('./conferencias/conferencias',  { user: req.user, conferencias: conferencias})
+	})
 }
