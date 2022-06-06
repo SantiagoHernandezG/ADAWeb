@@ -1,12 +1,18 @@
 #comentario{
 border-radius: 25px;
-margin-bottom: 1vh;
-border: 1px solid blue;
+margin-left: 1vw;
+margin-right: 1vw;
+margin-bottom: 1.5vh;
+margin-top: 1vh;
+border: 1px solid #ccc;
 	
 }
 #conferenciaCardDetail{
 	border-radius: 25px;
-	margin-bottom: 1vh;
-	border: 1px solid blue;
+	border: 1px solid #320750 ;
+	padding-bottom: 2vh;
 			
+}
+#myTab{
+border: 1.3px solid #320750 ;
 }
