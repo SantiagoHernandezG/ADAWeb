@@ -1,22 +1,20 @@
+
 <div class="modal" id="deleteBecarixModal-<%= becarix._id.toString() %>" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div class=" modal-dialog modal-becario" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">¿Desea borrar al becarix?</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-                <p>Nombre: <%= becarix.displayName %> </p>
+            <div>
+                <p >Nombre: <%= becarix.displayName %> </p>
                 <p>Id: <%= becarix._id %></p>
                 <p>Correo:  <%= becarix.email %></p>
             </div>
             <div class="modal-footer">
                 <form></form>
-                <form action="/eventos/deleteParticipante" method="POST">
-                    <div  class="visually-hidden">
-                        
-                        <input type="text" name="idBecarix" value="<%= becarix._id %>">
-                     </div>
-                    <button type="submit" name="memberId" class="btn btn-primary" value="<%= becarix._id %>" >Borrar becarix</button>
+                <form action="/becarixs/deleteBecarix" method="POST">
+                    <button type="submit" name="becarixId" class="btn btn-primary" value="<%= becarix._id %>" >Borrar becarix</button>
                 </form>
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
             </div>
