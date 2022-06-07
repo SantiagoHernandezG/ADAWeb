@@ -1,5 +1,6 @@
 const User = require('../models/User')
 const mailer = require('./apis/mailer')
+const bcrypt = require('bcrypt')
 
 exports.becarixs_get = async function  (req, res) {
     try{
@@ -26,4 +27,25 @@ exports.becarixs_correos_post = (req, res) => {
      mailer.sendMail(req.body.emailUser, req.body.asunto, req.body.messageText).then(result => console.log("email sent...", result))
     res.redirect("/becarixs")
 
+}
+
+exports.becarix_post = async (req, res) => {
+    let salt = 10
+    const hash = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(salt), null)
+    const becarix ={
+        displayName: req.body.displayName,
+        email: req.body.email,
+        password: hash,
+        position: "becarix"
+    }
+    try{
+        await User.create(becarix)
+        console.log("hola")
+        res.redirect("/becarixs")
+        
+    } catch (err){
+        console.log(err)
+        res.end()
+    }
+    
 }
