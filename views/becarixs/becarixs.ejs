@@ -22,59 +22,73 @@
             <%if(user.position == "admin"){ %>
                 <%- include('../menuAdmin'); %>
         <% }} %> 
+                    
 
             <div class="container">
+                 
                 <!-- Row  -->
                 <div class="row justify-content-center">
             <!-- Column -->
                     <div class="col-md-8 text-center">
                         <h3 class="my-3">Becarixs</h3>
-                    </div class="">
-                    <table class="table align-middle mb-0 bg-white">
-                        <thead class="bg-light">
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Fecha de creación</th>
-                                <th class="checkbox">
-                                    <button type="button" class="btn btn-outline-primary" onclick='checkAll()'  >Select All</button>
-                                    <button type="button" class="btn btn-outline-secondary" onclick="uncheckAll()">Clear</button>   
-                                </th>    
-                                <th></th>         
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% if(becarixs) {%> 
-                            <% for (let i = 0; i < becarixs.length; i++ ){ %>
-                                <tr>      
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <img
-                                                src="<%= becarixs[i].image ? becarixs[i].image : '/imagenes/profile-default.jpg' %>"
-                                                alt=""
-                                                style="width: 45px; height: 45px"
-                                                class="rounded-circle"
-                                                />
-                                            <div class="ms-3">
-                                                <p class="fw-bold mb-1"><%= becarixs[i].displayName %></p>
-                                                <p class="text-muted mb-0"><%= becarixs[i].email %></p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td> <%= becarixs[i].createdAt.toLocaleDateString(undefined, {timeZone: 'UTC', dateStyle: 'long'}) %>  </td>
-                                    <td class="checkbox" >
-                                        <div>
-                                            <input type="checkbox" name='becario' class="checkbox" value="">
-                                        </div>
-                                    </td>
-                                    <td>
-                                            <button class="btn btn-danger btn-sm rounded-0" type="button"  title="Delete" data-bs-toggle="modal"
-                                            data-bs-target="#deleteBecarixModal-<%= becarixs[i]._id.toString() %>"><i class="fa fa-trash" ></i></button>
-                                            <%- include('deleteBecarixModal',{becarix: becarixs[i]}); %>
-                                    </td>
+                    </div>
+                    <div class="my-3 buttons-becarixs ">
+                        <div>
+                            <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#correoBecarioModal" form="correos-becarixs" >Enviar correo</button>
+                        </div>
+                        
+                        <div>
+                            <button type="submit" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#correoModal" form="correos-participantes" >Agregar becarix</button>
+                        </div>
+                    </div>
+                     <%- include('correoBecarioModal'); %>
+                    <form id="correos-becarixs">
+                        <table class="table align-middle mb-0 bg-white">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Fecha de creación</th>
+                                    <th class="checkbox">
+                                        <button type="button" class="btn btn-outline-primary" onclick='checkAll()'  >Select All</button>
+                                        <button type="button" class="btn btn-outline-secondary" onclick="uncheckAll()">Clear</button>   
+                                    </th>    
+                                    <th></th>         
                                 </tr>
-                            <%} }%>
-                        </tbody>
-                     </table> 
+                            </thead>
+                            <tbody>
+                                <% if(becarixs) {%> 
+                                <% for (let i = 0; i < becarixs.length; i++ ){ %>
+                                    <tr>      
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img
+                                                    src="<%= becarixs[i].image ? becarixs[i].image : '/imagenes/profile-default.jpg' %>"
+                                                    alt=""
+                                                    style="width: 45px; height: 45px"
+                                                    class="rounded-circle"
+                                                    />
+                                                <div class="ms-3">
+                                                    <p class="fw-bold mb-1"><%= becarixs[i].displayName %></p>
+                                                    <p class="text-muted mb-0"><%= becarixs[i].email %></p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td> <%= becarixs[i].createdAt.toLocaleDateString(undefined, {timeZone: 'UTC', dateStyle: 'long'}) %>  </td>
+                                        <td class="checkbox" >
+                                            <div>
+                                                <input type="checkbox" name='becario' class="checkbox" value="<%= becarixs[i].email %>">
+                                            </div>
+                                        </td>
+                                        <td>
+                                                <button class="btn btn-danger btn-sm rounded-0" type="button"  title="Delete" data-bs-toggle="modal"
+                                                data-bs-target="#deleteBecarixModal-<%= becarixs[i]._id.toString() %>"><i class="fa fa-trash" ></i></button>
+                                                <%- include('deleteBecarixModal',{becarix: becarixs[i]}); %>
+                                        </td>
+                                    </tr>
+                                <%} }%>
+                            </tbody>
+                        </table> 
+                     </form>
                 </div>
             </div> 
         </div>  
@@ -95,17 +109,23 @@
                 }
             }
 
-            document.querySelector('#correos-participantes').addEventListener('submit', function(e) {
+            document.querySelector('#correos-becarixs').addEventListener('submit', function(e) {
                 // para que no se vuelva a cargar la página
                 e.preventDefault();
-                // target trae el form
+                
                 const emails = new Array()
+                // target trae del form
                 const data = new FormData(e.target);
-                for (const entry of data.entries())
+                //data.entries() trae los inputs del form
+                for (const entry of data.entries()){
+                    console.log(entry)
+                    //indice 1 porque ese es el correo
                     emails.push(entry[1])
+                    
+                }
+                //pone el arreglo de correos en el elemento que tiene de id emailUser
                 document.getElementById('emailUser').value = emails
             })
-
         </script>
     </body>
 </html>

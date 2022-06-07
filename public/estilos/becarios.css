@@ -5,3 +5,14 @@
 .modal-header {
     margin: 10px;
 }
+
+.buttons-becarixs {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    
+    
+}
+.buttons-becarixs button {
+margin-right: 10px;
+}

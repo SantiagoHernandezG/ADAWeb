@@ -139,8 +139,9 @@
                                                     // target trae el form
                                                     const emails = new Array()
                                                     const data = new FormData(e.target);
-                                                    for (const entry of data.entries())
+                                                    for (const entry of data.entries()){
                                                         emails.push(entry[1])
+                                                    }
                                                     document.getElementById('emailUser').value = emails
                                                 })
 
@@ -180,7 +181,7 @@
 
                                                 <td> <%= members[i].position %>  </td>
                                                  <td class="checkbox" >
-                                                        <div  >
+                                                        <div >
                                                             <input type="checkbox" name='participante' class="checkbox" value="<%= members[i].email %>">
                                                         </div>
                                                         
