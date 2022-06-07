@@ -40,7 +40,6 @@ exports.becarix_post = async (req, res) => {
     }
     try{
         await User.create(becarix)
-        console.log("hola")
         res.redirect("/becarixs")
         
     } catch (err){

@@ -23,16 +23,16 @@
                 <%- include('../menuAdmin'); %>
         <% }} %> 
                     
-
             <div class="container">
-                 
                 <!-- Row  -->
                 <div class="row justify-content-center">
             <!-- Column -->
                     <div class="col-md-8 text-center">
                         <h3 class="my-3">Becarixs</h3>
+                        <h5>Total: <%= becarixs.length ? becarixs.length : 0 %> becarixs</h5>
                     </div>
                     <div class="my-3 buttons-becarixs ">
+                         
                         <div>
                             <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#correoBecarioModal" form="correos-becarixs" >Enviar correo</button>
                         </div>
@@ -41,8 +41,8 @@
                             <button type="submit" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#registarBecarixModal" >Agregar becarix</button>
                         </div>
                     </div>
-                     <%- include('correoBecarioModal'); %>
-                      <%- include('agregarBecarioModal'); %>
+                    <%- include('correoBecarioModal'); %>
+                    <%- include('agregarBecarioModal'); %>
                     <form id="correos-becarixs">
                         <table class="table align-middle mb-0 bg-white">
                             <thead class="bg-light">
