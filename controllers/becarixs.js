@@ -1,6 +1,7 @@
 const User = require('../models/User')
 const mailer = require('./apis/mailer')
 const bcrypt = require('bcrypt')
+const RegistroEventoMember = require('../models/registroEvento/registroMember')
 
 exports.becarixs_get = async function  (req, res) {
     try{
@@ -14,6 +15,7 @@ exports.becarixs_get = async function  (req, res) {
 exports.becarix_delete_post = async function (req, res) {
     try{
         await User.findByIdAndRemove(req.body.becarixId)
+        await RegistroEventoMember.deleteMany({idMember: req.body.becarixId})
         res.redirect("/becarixs")
     } catch (err){
         console.log(err)
