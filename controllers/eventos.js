@@ -62,7 +62,6 @@ exports.evento_post =  async (req, res) => {
     }
     try{
         let event = await Evento.create(newEvent)
-
         res.render('./eventos/eventoDetail',  { user: req.user, evento: event, registro: false , members: false, users: false})
     } catch (err){
         console.log(err)
