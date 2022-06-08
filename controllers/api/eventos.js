@@ -66,7 +66,7 @@ exports.evento_update = async function(req, res){
         res.send("The event has been updated")
     } catch(err) {
         console.log(err)
-        res.status(400).send('The event was not updated')
+        res.status(404).send('The event was not updated')
 
     }
 

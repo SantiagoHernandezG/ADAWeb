@@ -13,6 +13,7 @@ var perfilRouter = require('./routes/perfil')
 var authRouter = require('./routes/auth')
 var homeRouter = require('./routes/home')
 var becarixsRouter = require('./routes/becarixs')
+var miembrxsRouter = require('./routes/miembrxs')
 var eventosAPIRouter = require('./routes/api/eventos')
 
 const connectDB = require('./database/db')
@@ -81,6 +82,7 @@ app.use('/auth', authRouter)
 app.use('/logout', authRouter)
 app.use('/home', homeRouter)
 app.use('/becarixs', becarixsRouter)
+app.use('/miembrxs', miembrxsRouter)
 app.use('/api', eventosAPIRouter)
 
 //Inicio de servidor en puerto default
