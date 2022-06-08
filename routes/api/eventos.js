@@ -4,7 +4,8 @@ let eventoController = require('../../controllers/api/eventos')
 
 
 router.get("/", eventoController.eventos_list)
-router.post("/eventos/create", eventoController.eventos_create)
-router.post("/eventos/delete", eventoController.eventos_delete)
+router.post("/eventos/create", eventoController.evento_create)
+router.post("/eventos/delete", eventoController.evento_delete)
+router.post("/eventos/update", eventoController.evento_update)
 
 module.exports = router
