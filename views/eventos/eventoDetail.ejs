@@ -70,6 +70,7 @@
                                             <a class="nav-link " href="#tab-creator-details" data-bs-toggle="tab" role="tab" aria-controls="tab-reviews">
                                             Detalles de publicación        </a>
                                      </li>
+                                     <% if(members.length > 0 || users.length > 0 ) { %> 
                                      <li class="nav-item  creator_tab" id="tab-title-reviews">
                                             <a class="nav-link " href="#tab-participantes" data-bs-toggle="tab" role="tab" aria-controls="tab-reviews">
                                             Participantes        </a>
@@ -78,7 +79,7 @@
                                             <a class="nav-link " href="#tab-estadisticas" data-bs-toggle="tab" role="tab" aria-controls="tab-reviews">
                                             Estadísticas       </a>
                                      </li>
-                                    <%}}%>
+                                    <%}}}%>
                         </ul>
                     </div>
                         <div class="tab-content px-0" id="tab-content">
