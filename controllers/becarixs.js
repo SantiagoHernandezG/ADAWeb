@@ -45,7 +45,17 @@ exports.becarix_post = async (req, res) => {
         res.redirect("/becarixs")
         
     } catch (err){
-        console.log(err)
+        if(err.name === "MongoServerError"){
+            //? mandar información extra de que ocurrió un errror en la página (consulta)
+            //& te ayuda a separar la consulta
+            res.redirect(`/becarixs?error=correo-duplicado&mail=${req.body.email}&name=${req.body.displayName}`)
+            
+
+        }
+        
+           
+    
+        
         res.end()
     }
     

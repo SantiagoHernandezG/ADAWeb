@@ -10,7 +10,7 @@
           <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
  
  <!-- Modal registro -->
-<div class="modal fade" id="registarBecarixModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div name="modal" class="modal fade" id="registarBecarixModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
       <div class="myform form ">
          <div class="logo mb-3">
@@ -32,6 +32,8 @@
                <label for="password">Contraseña</label>
                <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Ingrese contraseña" required="true">
             </div>
+        
+            <div class="alert alert-danger" role="alert" id="modal-mail-error"></div>
             <div class="modal-footer">
                 <button type="submit"  class="btn btn-primary" >Agregar becarix</button>
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
@@ -41,3 +43,12 @@
       </div>
    </div>
 </div>
+   <script>
+      const queryParams = new URLSearchParams(window.location.search)
+      if(queryParams.get('error')) {
+         // Mostrar modal
+         const alert = document.querySelector('#modal-mail-error')
+         //queryParams agarras los parametros que trae la url 
+         alert.innerText = `El correo está duplicado<br>Correo: ${queryParams.get('mail')}<br/>Nombre: ${queryParams.get('name')}`;
+      }
+</script>
