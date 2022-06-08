@@ -1,6 +1,8 @@
 body{
-    background-color: #eee
+    background-color: #eee;
+	font-family: "Trirong", serif!important;
 }
+
 .menu-admin {
     background-color: #de1985;
     border-radius:0px !important;

@@ -1,3 +1,4 @@
+
 const Conferencia = require('../models/conferencias/conferencias')
 
 exports.conferencias_get = function (req, res) {
@@ -10,8 +11,8 @@ exports.conferencias_get = function (req, res) {
 
 exports.conferencia_get = function (req, res) {
 	const { id } = req.params;
-	console.log('Id por params: ' + req.params);
-	console.log('Id de la conferencia por to string: ' + req.params.toString());
+	//console.log('Id por params: ' + req.params);
+	//console.log('Id de la conferencia por to string: ' + req.params.toString());
 	Conferencia.findById(id, function (err, conferencias) {
 		if (err) {
 			console.log(err)
@@ -46,23 +47,18 @@ exports.conferencia_post = async (req, res) =>{
 		console.log(err)
 	}
 }
-
-exports.conferencia_comentario_post = async function (req, res, next) {
+//Adjuntar comentarios a las conferencias
+exports.conferencia_comentario_post = async function (req, res) {
 	const { id } = req.params;
+	const newComentario = {
+		comentarios: req.body.comentario,
+	}
 	console.log('Id de la conferencia a editar: ' + id);
-	await Conferencia.findByIdAndUpdate(id, {
-		$set: {
-			comentarios: req.body.comentario
-		}
-	},
-		function (err, conferencias) {
-			if (err) {
-				console.log(err)
-			}
-			else {
-				console.log("Conferencia editada : ", conferencias);
-				// newTrabajador.save();
-			}
-			res.render('./conferencias/conferencias', { user: req.user, conferencias: conferencias })
-		})
+	try {
+        await Conferencia.findByIdAndUpdate(id, newComentario)
+		res.render('./conferencias/conferencias', { user: req.user, conferencias: conferencias })
+    } catch (err) {
+        console.log(err)
+    }
+		
 }

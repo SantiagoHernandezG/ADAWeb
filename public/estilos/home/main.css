@@ -7,6 +7,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 html {
   scroll-behavior: smooth;
+  font-family: "Trirong", serif!important;
 }
 .icono{
 	width: 7.2vw;
@@ -16,7 +17,7 @@ html {
 	background-color: #fff !important;
 }
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Trirong", serif!important;
   color: #8d97ad;
   font-weight: 300;
   font-style: bold;
@@ -984,7 +985,7 @@ ol {
 }
 
 .breadcrumbs .breadcrumb-nav li:after {
-  font-family: "Montserrat", sans-serif;
+	font-family: "Trirong", serif!important;
   color: #8d97ad;
   font-weight: 300;
 }
