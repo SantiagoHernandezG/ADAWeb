@@ -31,17 +31,20 @@
 				<figure class="highcharts-figure">
 					<div id="container"></div>
 					<p class="highcharts-description">
-					<form class="form-floating mx-auto col-8" action="/nosotrxs/wordcloud" method="POST">
-						<div class="form-floating mb-3">
-							<input type="text" pattern="[a-zA-Z]+" name="descripcion" class="form-control"
-								id="floatingInput" required>
-							<label for="floatingInput">Describe a Ada Women en una palabra</label>
-						</div>
-						<!--onClick="window.location.reload();"-->
-						<button type="submit"  class="btn btn-primary col-4">Sube tú
-							opinion</button>
-					</form>
-					</p>
+						<% if (user) { %> 
+							<form class="form-floating mx-auto col-8" action="/nosotrxs/wordcloud" method="POST">
+								<div class="form-floating mb-3">
+									<input type="text" pattern="[a-zA-Z]+" name="descripcion" class="form-control"
+										id="floatingInput" required>
+									<label for="floatingInput">Describe a Ada Women en una palabra</label>
+								</div>
+								<button type="submit"  class="btn btn-primary col-4">Sube tú
+									opinion</button>
+							</form>
+							</p>
+						  <% } else {%> 
+							
+							<% } %> 
 				</figure>
 			</div>
 			
