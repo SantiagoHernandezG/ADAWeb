@@ -11,8 +11,8 @@
 
 <h2> Para correr el proyecto</h2>
 <ul>
-  <li>✅ Instalar dependencias NPM con el comando ````npm i ```` </li>
-  <li>✅ Correr el proyecto con el comando  ```` npm run start ```` </li>
+  <li>✅ Instalar dependencias NPM con el comando npm i </li>
+  <li>✅ Correr el proyecto con el comando  npm run start  </li>
   <li>⚠️Asegúrate de tener el archivo env listo</li>
 </ul>
   
