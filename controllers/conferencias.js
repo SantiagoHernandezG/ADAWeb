@@ -53,7 +53,10 @@ exports.conferencia_comentario_post = async function (req, res) {
 	const filter = {_id: id};
 	const update = {comentarios: req.body.comentario};
 	console.log('Id de la conferencia a editar: ' + id);
-    let newConferencia = await Conferencia.findOneAndUpdate(filter, update);
+    let newConferencia = await Conferencia.updateOne(
+		{_id: id},
+		{$push: {comentarios: req.body.comentario}},
+	);
 	try {	
 	newConferencia = await Character.findOne(filter);
 	} catch (err) {
