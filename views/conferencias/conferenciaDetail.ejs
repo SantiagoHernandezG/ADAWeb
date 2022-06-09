@@ -86,7 +86,7 @@
 									 <strong><%= user.displayName.substring(0, user.displayName.indexOf(' ')); %></strong> 
 								 </div>
 									<div class="col-10">
-									<form class="form-floating " action="/comentarioConferencia/<%= conferencias._id.toString() %>"  method="POST">
+									<form class="form-floating " action="/conferencias/comentarioConferencia/<%= conferencias._id.toString() %>"  method="POST">
 										<div class="form-floating mb-3">
 											<input type="text" class="form-control" name="comentario" id="floatingInput" placeholder="name@example.com">
 											<label for="floatingInput">Comenta</label>
