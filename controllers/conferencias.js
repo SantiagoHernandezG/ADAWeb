@@ -50,16 +50,22 @@ exports.conferencia_post = async (req, res) =>{
 //Adjuntar comentarios a las conferencias
 exports.conferencia_comentario_post = async function (req, res) {
 	const { id } = req.params;
+	const filter = {_id: id};
+	const update = {comentarios: req.body.comentario};
 	console.log('Id de la conferencia a editar: ' + id);
-    await Conferencia.findOneAndUpdate(id, { $set:
-	{comentarios: req.body.comentario}},
-	function (err, conferencias){
+    let newConferencia = await Conferencia.findOneAndUpdate(filter, update);
+	try {	
+	newConferencia = await Character.findOne(filter);
+	} catch (err) {
+		console.log(err)
+	}
+	Conferencia.findById(id, function (err, conferencias) {
 		if (err) {
 			console.log(err)
 		}
 		else {
-			console.log("Comentario añadido: " + conferencias); // Success
+			//Success
+			res.render('./conferencias/conferenciaDetail', { user: req.user, conferencias: conferencias })
 		}
 	})
-	res.render('./conferencias/conferencias', { user: req.user, conferencias: conferencias })
 }
