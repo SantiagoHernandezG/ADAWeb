@@ -11,6 +11,7 @@ const ConferenciaSchema = new mongoose.Schema({
 		type: String,
 	},
 	descripcion: String,
+	link: String,
 	comentarios: [String],
 })
 module.exports = mongoose.model('Conferencia', ConferenciaSchema);

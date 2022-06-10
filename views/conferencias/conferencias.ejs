@@ -51,10 +51,12 @@
 			<%- include('./cardConferencia', {conferencias: conferencias[i]}); %>
 		<% } %> 
 			</div>
+			<% if (user) { %> 
 			<div class="col text-center">
 				<button type="button" class="btn btn-primary col-4" data-bs-toggle="modal"
 					data-bs-target="#conferenciaModal">Añadir nueva conferencia</button>
 			</div>
+			<% } %>
 		</div>
 		<!--Inicio formulario modal para añadir conferencia-->
 		<div class="modal fade" id="conferenciaModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -83,6 +85,10 @@
 						<div class="form-floating mb-3">
 							<input type="text" class="form-control" name="email">
 							<label for="floatingInput">Contacto Conferencista</label>
+						</div>
+						<div class="form-floating mb-3">
+							<input type="text" pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)" class="form-control" name="link">
+							<label for="floatingInput">URL(Link) a la conferencia</label>
 						</div>
 						<div class="form-floating">
 							<textarea class="form-control" name="descripcion" placeholder="Leave a comment here" id="floatingTextarea2"

@@ -35,6 +35,7 @@ exports.conferencia_post = async (req, res) =>{
 		contacto: req.body.email,
 		imageConferencia: req.file.filename,
 		descripcion: req.body.descripcion,
+		link: req.body.link,
 		comentarios: [],
 	}
 	console.log(newConferencia)
