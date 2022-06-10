@@ -55,7 +55,7 @@ exports.conferencia_comentario_post = async function (req, res) {
 	console.log('Id de la conferencia a editar: ' + id);
     let newConferencia = await Conferencia.updateOne(
 		{_id: id},
-		{$push: {comentarios: req.body.comentario}},
+		{$push: {comentarios: req.user.displayName.substring(0, req.user.displayName.indexOf(' ')) + ' | ' + req.body.comentario }},
 	);
 	try {	
 	newConferencia = await Character.findOne(filter);

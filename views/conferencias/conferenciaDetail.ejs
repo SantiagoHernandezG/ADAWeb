@@ -66,14 +66,23 @@
 									<div class="col-2 text-center">
 								<img src="https://random.imagecdn.app/45/45" style="padding-top: 1vh;" class="rounded-circle"><br>
 								<% if (user) { %> 
-								<a> Usuario: <%=/* user.displayName.substring(0, user.displayName.indexOf(' ')); */%></a>
+								<a><%= conferencias.comentarios[i].substring(0, conferencias.comentarios[i].indexOf('|')); %></a>
 								  <% } else {%> 		
-									<a>User: <% } %></a> 
+									<a>Miembro: <% } %></a> 
 									</div>
-									   <div class="col-10">
-										<p><%= conferencias.comentarios[i] %></p>
+									<div class="col-10">	
+										<p id="'bodycomentario<%= i %>"></p>
 										 </form>
 									   </div>
+									<script>
+										var comentario  = '';
+										comentario  = '<%= conferencias.comentarios[i] %>';
+										var arrayComentario = new Array();
+										arrayComentario = comentario.split(" | ");
+										console.log(arrayComentario[1]);
+										//console.log(JSON.stringify(comentario));
+										document.getElementById("'bodycomentario<%= i %>").innerHTML = arrayComentario[1];
+										</script>
 									</div>
 									
 									<% } %>
